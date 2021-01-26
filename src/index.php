@@ -34,7 +34,8 @@ if (!isset($_SESSION["admin"])) {
     <?php
     $page_ok = array(
         'choix_connexion' => 'pre-login.php',
-        'connexion' => 'login-page.php'
+        'connexion' => 'login-page.php',
+        'espace_personnel' => 'espace-perso.php'
     );
 
     if (isset($_GET['page']) and isset($page_ok[$_GET['page']])) {
