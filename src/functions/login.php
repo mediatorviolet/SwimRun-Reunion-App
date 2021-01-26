@@ -10,8 +10,10 @@ function login()
             die('Erreur : ' . $e->getMessage());
         }
 
+        // Préparation de la requête SQL : on va comparer le nom de la team et l'email du chef d'équipe
         $req = $bdd->prepare('SELECT * FROM la_longue WHERE team = :team AND email_relayeur_1 = :email_relayeur_1');
 
+        // On exécute la requête SQL en comparant les infos de la BDD avec les infos rentrées dans le formulaire par l'utilisateur
         $req->execute(array(
             'team' => $_POST['team'],
             'email_relayeur_1' => $_POST['password']
@@ -19,12 +21,12 @@ function login()
 
         $result = $req->fetch();
 
-        if (!$result) {
+        if (!$result) { // Si les identifiants ne concordent pas on affiche un message d'erreur
             $error_login = 'Nom d\'équipe ou mot de passe incorrect';
-        } else {
+        } else { // Les identifiants correspondent avec ce qui se trouve dans la BDD
             $error_login = '';
-            $_SESSION['user'] = $result;
-            header('Location: index.php?page=choix_connexion');
+            $_SESSION['user'] = $result; // On stocke temporairement les infos de l'équipe dans la variable $_SESSION
+            header('Location: index.php?page=choix_connexion'); // On redirige l'utilisateur vers son espace personnel
             die;
         }
     }
