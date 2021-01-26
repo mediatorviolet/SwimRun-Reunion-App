@@ -3,7 +3,7 @@
 
 <!-- Login la longue -->
 <div class="container-fluid main-page d-flex justify-content-center align-items-center">
-    <div class="card text-center shadow-lg" style="width: 25rem;">
+    <div class="card text-center shadow-lg border-0" style="width: 25rem;">
         <div class="card-header fw-bold">
             Connexion :
         </div>
@@ -19,12 +19,14 @@
                     <label for="floatingPassword">Mot de passe</label>
                 </div>
                 <button type="submit" class="btn rounded-0" name="connexion">
-                    Connexion <i class="fas fa-sign-in-alt"></i>
+                    Connexion <i class="fas fa-sign-in-alt text-white"></i>
                 </button>
             </form>
         </div>
         <div class="card-footer text-muted">
-            Lorem ipsum dolor sit amet.
+            <a href="index.php?page=choix_connexion" class="text-decoration-none" style="color: #242424;">
+                <i class="fas fa-angle-left me-1"></i> Retour au choix de connexion
+            </a>
         </div>
     </div>
 </div>
