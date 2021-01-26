@@ -11,11 +11,11 @@
             <span class="alert-danger"><?= $error_login ?></span>
             <form action="<?= login() ?>" method="post">
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="Nom de l'équipe" name="team">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="Nom de l'équipe" name="team" required>
                     <label for="floatingInput">Nom de l'équipe</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Mot de passe" name="password">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Mot de passe" name="password" required>
                     <label for="floatingPassword">Mot de passe</label>
                 </div>
                 <button type="submit" class="btn rounded-0" name="connexion">
