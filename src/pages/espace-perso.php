@@ -3,7 +3,7 @@
 
 <div class="container-fluid">
     <form action="<?= logout() ?>" method="post">
-        <div class="d-flex justify-content-center mt-3">
+        <div class="d-flex justify-content-end mt-3">
             <button type="submit" name="deconnexion" class="btn rounded-0">
                 Deconnexion
             </button>
@@ -20,7 +20,7 @@
     </div>
     <form action="" method="post">
         <div class="row">
-            <div class="col-sm">
+            <div class="col-sm-4 mx-auto">
                 <h3 class="mb-3">Coureur 1 :</h3>
                 <div class="mb-3">
                     <label for="nom1" class="form-label">Nom</label>
@@ -79,7 +79,7 @@
                     </div>
                 </div>
                 <div id="num_licence1_div" class="mb-3">
-                    <label for="num_licence1" class="form-label">Numéro de licence (uniquement les 7 premiers caractères)</label>
+                    <label for="num_licence1" class="form-label">Numéro de licence (au minimum les 7 premiers caractères)</label>
                     <input type="text" class="form-control" id="num_licence1" name="num_licence1" value="<?= $user['numero_licence_relayeur_1'] ?>" maxlength="7">
                 </div>
                 <div id="certif1_div" class="mb-3">
@@ -87,7 +87,7 @@
                     <input class="form-control" type="file" id="certif1">
                 </div>
             </div>
-            <div class="col-sm">
+            <div class="col-sm-4 mx-auto">
                 <h3 class="mb-3">Coureur 2 :</h3>
                 <div class="mb-3">
                     <label for="nom2" class="form-label">Nom</label>
@@ -146,7 +146,7 @@
                     </div>
                 </div>
                 <div id="num_licence2_div" class="mb-3">
-                    <label for="num_licence2" class="form-label">Numéro de licence (uniquement les 7 premiers caractères)</label>
+                    <label for="num_licence2" class="form-label">Numéro de licence (au minimum les 7 premiers caractères)</label>
                     <input type="text" class="form-control" id="num_licence2" name="num_licence2" value="<?= $user['numero_licence_relayeur_2'] ?>" maxlength="7">
                 </div>
                 <div id="certif2_div" class="mb-3">
