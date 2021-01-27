@@ -24,8 +24,8 @@
             </form>
         </div>
         <div class="card-footer text-muted">
-            <a href="index.php?page=choix_connexion" class="text-decoration-none" style="color: #242424;">
-                <i class="fas fa-angle-left me-1"></i> Retour au choix de connexion
+            <a href="http://www.swimrun-reunion.com" class="text-decoration-none" style="color: #242424;">
+                <i class="fas fa-angle-left me-1"></i> Retour vers swimrun-reunion.com
             </a>
         </div>
     </div>
