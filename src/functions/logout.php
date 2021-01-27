@@ -8,4 +8,11 @@ function logout()
         header('Location: index.php?page=connexion');
         die;
     }
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST['deconnexion_admin'])) {
+        $_SESSION['admin'] = false;
+        session_destroy();
+        header('Location: index.php?page=connexion');
+        die;
+    }
 }
