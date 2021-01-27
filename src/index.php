@@ -33,16 +33,16 @@ if (!isset($_SESSION["admin"])) {
 <body>
     <?php
     $page_ok = array(
-        'choix_connexion' => 'pre-login.php',
         'connexion' => 'login-page.php',
-        'espace_personnel' => 'espace-perso.php'
+        'espace_personnel' => 'espace-perso.php',
+        'admin' => 'admin.php'
     );
 
     if (isset($_GET['page']) and isset($page_ok[$_GET['page']])) {
         $page = $_GET['page'];
         include 'pages/' . $page_ok[$page];
     } else {
-        include 'pages/pre-login.php';
+        include 'pages/login-page.php';
     }
     ?>
 </body>
