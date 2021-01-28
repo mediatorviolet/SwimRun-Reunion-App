@@ -36,10 +36,14 @@
 }
 
 .badge {
-    background-color: #242424 !important;
+    background-color: #ff1744 !important;
     transition: ease-in-out 0.3s !important;
 }
 
 .btn:hover > .badge {
     background-color: #ff1744 !important;
+}
+
+.btn_deco_admin:hover {
+    border-color: #fff !important;
 }
