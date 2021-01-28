@@ -177,12 +177,24 @@
             </div>
         </div>
         <div class="d-flex justify-content-center my-4">
-            <button type="submit" class="btn rounded-0">Enregistrer les modifications</button>
+            <button type="submit" id="send_modif" name="send_modif" class="btn rounded-0">Enregistrer les modifications</button>
         </div>
     </form>
 </div>
 
 <script>
+    // On affiche le bouton que si un champ est modifié
+    var input = document.getElementsByTagName('input');
+    var send_modif = document.getElementById('send_modif');
+    send_modif.style.display = 'none';
+    for (let i = 0; i < input.length; i++) {
+        input[i].addEventListener('change', afficher_btn);
+    }
+
+    function afficher_btn() {
+        send_modif.style.display = 'block';
+    }
+
     // ca marche pas à check
     var radios_S1 = document.getElementsByName('sexe1');
     var radios_S2 = document.getElementsByName('sexe2');
@@ -201,6 +213,7 @@
         }
     }
 
+    // Changement dynamique du nom du responsable d'équipe
     var nom_respo = document.getElementById('nom1');
     var prenom_respo = document.getElementById('prenom1');
     var respo_equipe = document.getElementById('respo_equipe');
@@ -214,6 +227,7 @@
     prenom_respo.addEventListener('keyup', respo, false);
 
     // A refactoriser !!!!!!!!!!!!!
+    // On affiche les inputs correspondant en fonction de si l'utilisateur coche 'FFTri' ou  'NON-LICENCIE'
     var radios1 = document.getElementsByName("licence1");
     var licence1 = document.getElementById("num_licence1_div");
     var certif1 = document.getElementById("certif1_div");
