@@ -1,8 +1,9 @@
 <?php include 'functions/logout.php' ?>
+<?php include 'functions/admin_functions.php' ?>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
     <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="#">Tableau de bord administrateur</a>
+        <a class="navbar-brand fw-bold mx-lg-4" href="#">Tableau de bord administrateur</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -36,138 +37,108 @@
     </ul>
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active mt-5" id="a-valider" role="tabpanel" aria-labelledby="a-valider-tab">
-            <div class="table-responsive mb-5">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Coureur 1</th>
-                            <th scope="col">Coureur 2</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Nom</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Prénom</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Sexe</th>
-                            <td>Larry the Bird</td>
-                            <td>Larry the Bird</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Taille de t-shirt</th>
-                            <td>Larry the Bird</td>
-                            <td>Larry the Bird</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Année de naissance</th>
-                            <td>Larry the Bird</td>
-                            <td>Larry the Bird</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Téléphone</th>
-                            <td>Larry the Bird</td>
-                            <td>Larry the Bird</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Type de licence</th>
-                            <td>Larry the Bird</td>
-                            <td>Larry the Bird</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Numéro de licence</th>
-                            <td>Larry the Bird</td>
-                            <td>Larry the Bird</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Nom du club</th>
-                            <td>Larry the Bird</td>
-                            <td>Larry the Bird</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <form action="" method="post">
-                    <button type="submit" class="btn rounded-0 me-4">Valider</button>
-                    <button type="submit" class="btn rounded-0">Ne pas valider</button>
-                </form>
-            </div>
-            <div class="table-responsive mb-5">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Coureur 1</th>
-                            <th scope="col">Coureur 2</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Nom</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Prénom</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Sexe</th>
-                            <td>Larry the Bird</td>
-                            <td>Larry the Bird</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Taille de t-shirt</th>
-                            <td>Larry the Bird</td>
-                            <td>Larry the Bird</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Année de naissance</th>
-                            <td>Larry the Bird</td>
-                            <td>Larry the Bird</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Téléphone</th>
-                            <td>Larry the Bird</td>
-                            <td>Larry the Bird</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Type de licence</th>
-                            <td>Larry the Bird</td>
-                            <td>Larry the Bird</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Numéro de licence</th>
-                            <td>Larry the Bird</td>
-                            <td>Larry the Bird</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Nom du club</th>
-                            <td>Larry the Bird</td>
-                            <td>Larry the Bird</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <form action="" method="post">
-                    <button type="submit" class="btn rounded-0 me-4">Valider</button>
-                    <button type="submit" class="btn rounded-0">Ne pas valider</button>
-                </form>
-            </div>
+            <?php
+            try { // Connexion à la BDD
+                $bdd = new PDO('mysql:host=127.0.0.1;dbname=swimrun-app;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            } catch (Exception $e) { // Si erreur, on renvoi un message d'erreur
+                die('Erreur : ' . $e->getMessage());
+            }
+
+            $reponse = $bdd->query('SELECT t.rsfp_product course, t.team team, e.* FROM team t RIGHT JOIN en_attente e ON e.id_team = t.id WHERE e.etat = \'a_valider\'');
+
+            while ($donnees = $reponse->fetch()) { ?>
+
+                <div class="table-responsive mb-5">
+                    <table class="table table-hover table-bordered border-dark shadow">
+                        <thead>
+                            <tr>
+                                <th scope="col"><?= substr($donnees['course'], 20) . ' | ' . $donnees['team'] . ' | N° ' . $donnees['id_team'] ?></th>
+                                <th scope="col">Coureur 1</th>
+                                <th scope="col">Coureur 2</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Nom</th>
+                                <td><?= $donnees['nom_relayeur_1'] ?></td>
+                                <td><?= $donnees['nom_relayeur_2'] ?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Prénom</th>
+                                <td><?= $donnees['prenom_relayeur_1'] ?></td>
+                                <td><?= $donnees['prenom_relayeur_2'] ?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Sexe</th>
+                                <td><?= $donnees['sexe1'] ?></td>
+                                <td><?= $donnees['sexe2'] ?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Taille de t-shirt</th>
+                                <td><?= $donnees['tshirt1'] ?></td>
+                                <td><?= $donnees['tshirt2'] ?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Année de naissance</th>
+                                <td><?= $donnees['annee_naissance_1'] ?></td>
+                                <td><?= $donnees['annee_naissance_2'] ?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Téléphone</th>
+                                <td><?= '0' . $donnees['telephone1'] ?></td>
+                                <td><?= '0' . $donnees['telephone2'] ?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Type de licence</th>
+                                <td><?= $donnees['licence_1'] ?></td>
+                                <td><?= $donnees['licence_2'] ?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Numéro de licence</th>
+                                <td><?= $donnees['numero_licence_1'] ?></td>
+                                <td><?= $donnees['numero_licence_2'] ?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Nom du club</th>
+                                <td><?= $donnees['club1'] ?></td>
+                                <td><?= $donnees['club2'] ?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Certificat médical</th>
+                                <td><?= $donnees['certificat1'] ?></td>
+                                <td><?= $donnees['certificat2'] ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <form action="<?= valider() ?>" method="post">
+                        <input type="hidden" name="id_attente" value="<?= $donnees['id_attente'] ?>">
+                        <button type="submit" name="valide" class="btn rounded-0 me-4">Valider</button>
+                        <button type="submit" name="non-valide" class="btn rounded-0">Ne pas valider</button>
+                    </form>
+                </div>
+            <?php
+            }
+
+            $reponse->closeCursor();
+            ?>
         </div>
         <div class="tab-pane fade mt-5" id="non-valide" role="tabpanel" aria-labelledby="non-valide-tab">
-            <div class="tab-pane fade show active mt-5" id="a-valider" role="tabpanel" aria-labelledby="a-valider-tab">
+            <?php
+            try { // Connexion à la BDD
+                $bdd = new PDO('mysql:host=127.0.0.1;dbname=swimrun-app;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            } catch (Exception $e) { // Si erreur, on renvoi un message d'erreur
+                die('Erreur : ' . $e->getMessage());
+            }
+
+            $reponse = $bdd->query('SELECT t.rsfp_product course, t.team team, e.* FROM team t RIGHT JOIN en_attente e ON e.id_team = t.id WHERE e.etat = \'non_valide\'');
+
+            while ($donnees = $reponse->fetch()) { ?>
+
                 <div class="table-responsive mb-5">
-                    <table class="table">
+                    <table class="table table-hover table-bordered border-dark shadow">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
+                                <th scope="col"><?= substr($donnees['course'], 20) . ' | ' . $donnees['team'] . ' | N° ' . $donnees['id_team'] ?></th>
                                 <th scope="col">Coureur 1</th>
                                 <th scope="col">Coureur 2</th>
                             </tr>
@@ -175,61 +146,80 @@
                         <tbody>
                             <tr>
                                 <th scope="row">Nom</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
+                                <td><?= $donnees['nom_relayeur_1'] ?></td>
+                                <td><?= $donnees['nom_relayeur_2'] ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Prénom</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
+                                <td><?= $donnees['prenom_relayeur_1'] ?></td>
+                                <td><?= $donnees['prenom_relayeur_2'] ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Sexe</th>
-                                <td>Larry the Bird</td>
-                                <td>Larry the Bird</td>
+                                <td><?= $donnees['sexe1'] ?></td>
+                                <td><?= $donnees['sexe2'] ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Taille de t-shirt</th>
-                                <td>Larry the Bird</td>
-                                <td>Larry the Bird</td>
+                                <td><?= $donnees['tshirt1'] ?></td>
+                                <td><?= $donnees['tshirt2'] ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Année de naissance</th>
-                                <td>Larry the Bird</td>
-                                <td>Larry the Bird</td>
+                                <td><?= $donnees['annee_naissance_1'] ?></td>
+                                <td><?= $donnees['annee_naissance_2'] ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Téléphone</th>
-                                <td>Larry the Bird</td>
-                                <td>Larry the Bird</td>
+                                <td><?= '0' . $donnees['telephone1'] ?></td>
+                                <td><?= '0' . $donnees['telephone2'] ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Type de licence</th>
-                                <td>Larry the Bird</td>
-                                <td>Larry the Bird</td>
+                                <td><?= $donnees['licence_1'] ?></td>
+                                <td><?= $donnees['licence_2'] ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Numéro de licence</th>
-                                <td>Larry the Bird</td>
-                                <td>Larry the Bird</td>
+                                <td><?= $donnees['numero_licence_1'] ?></td>
+                                <td><?= $donnees['numero_licence_2'] ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Nom du club</th>
-                                <td>Larry the Bird</td>
-                                <td>Larry the Bird</td>
+                                <td><?= $donnees['club1'] ?></td>
+                                <td><?= $donnees['club2'] ?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Certificat médical</th>
+                                <td><?= $donnees['certificat1'] ?></td>
+                                <td><?= $donnees['certificat2'] ?></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
+            <?php
+            }
+
+            $reponse->closeCursor();
+            ?>
         </div>
         <div class="tab-pane fade mt-5" id="valide" role="tabpanel" aria-labelledby="valide-tab">
-            <div class="tab-pane fade show active mt-5" id="a-valider" role="tabpanel" aria-labelledby="a-valider-tab">
+            <?php
+            try { // Connexion à la BDD
+                $bdd = new PDO('mysql:host=127.0.0.1;dbname=swimrun-app;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            } catch (Exception $e) { // Si erreur, on renvoi un message d'erreur
+                die('Erreur : ' . $e->getMessage());
+            }
+
+            $reponse = $bdd->query('SELECT t.rsfp_product course, t.team team, e.* FROM team t RIGHT JOIN en_attente e ON e.id_team = t.id WHERE e.etat = \'valide\'');
+
+            while ($donnees = $reponse->fetch()) { ?>
+
                 <div class="table-responsive mb-5">
-                    <table class="table">
+                    <table class="table table-hover table-bordered border-dark shadow">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
+                                <th scope="col"><?= substr($donnees['course'], 20) . ' | ' . $donnees['team'] . ' | N° ' . $donnees['id_team'] ?></th>
                                 <th scope="col">Coureur 1</th>
                                 <th scope="col">Coureur 2</th>
                             </tr>
@@ -237,53 +227,62 @@
                         <tbody>
                             <tr>
                                 <th scope="row">Nom</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
+                                <td><?= $donnees['nom_relayeur_1'] ?></td>
+                                <td><?= $donnees['nom_relayeur_2'] ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Prénom</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
+                                <td><?= $donnees['prenom_relayeur_1'] ?></td>
+                                <td><?= $donnees['prenom_relayeur_2'] ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Sexe</th>
-                                <td>Larry the Bird</td>
-                                <td>Larry the Bird</td>
+                                <td><?= $donnees['sexe1'] ?></td>
+                                <td><?= $donnees['sexe2'] ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Taille de t-shirt</th>
-                                <td>Larry the Bird</td>
-                                <td>Larry the Bird</td>
+                                <td><?= $donnees['tshirt1'] ?></td>
+                                <td><?= $donnees['tshirt2'] ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Année de naissance</th>
-                                <td>Larry the Bird</td>
-                                <td>Larry the Bird</td>
+                                <td><?= $donnees['annee_naissance_1'] ?></td>
+                                <td><?= $donnees['annee_naissance_2'] ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Téléphone</th>
-                                <td>Larry the Bird</td>
-                                <td>Larry the Bird</td>
+                                <td><?= '0' . $donnees['telephone1'] ?></td>
+                                <td><?= '0' . $donnees['telephone2'] ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Type de licence</th>
-                                <td>Larry the Bird</td>
-                                <td>Larry the Bird</td>
+                                <td><?= $donnees['licence_1'] ?></td>
+                                <td><?= $donnees['licence_2'] ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Numéro de licence</th>
-                                <td>Larry the Bird</td>
-                                <td>Larry the Bird</td>
+                                <td><?= $donnees['numero_licence_1'] ?></td>
+                                <td><?= $donnees['numero_licence_2'] ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Nom du club</th>
-                                <td>Larry the Bird</td>
-                                <td>Larry the Bird</td>
+                                <td><?= $donnees['club1'] ?></td>
+                                <td><?= $donnees['club2'] ?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Certificat médical</th>
+                                <td><?= $donnees['certificat1'] ?></td>
+                                <td><?= $donnees['certificat2'] ?></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
+            <?php
+            }
+
+            $reponse->closeCursor();
+            ?>
         </div>
     </div>
 
