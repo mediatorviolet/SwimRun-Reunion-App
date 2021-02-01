@@ -1,22 +1,32 @@
 <?php include 'functions/logout.php' ?>
 <?php $user =  $_SESSION['user']; ?>
+<?php include 'functions/traitement.php'; ?>
+<?php validation_form() ?>
 
-<div class="container-fluid">
-    <form action="<?= logout() ?>" method="post">
-        <div class="d-flex justify-content-end mt-3">
-            <button type="submit" name="deconnexion" class="btn rounded-0">
-                Déconnexion
-            </button>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold mx-lg-4" href="#">Bienvenue <?= $user['team'] ?> !</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <form action="<?= logout() ?>" method="post">
+                <button type="submit" name="deconnexion" id="btn_deco_admin" class="btn rounded-0 mx-lg-4 mt-lg-0 mt-4 h-100">
+                    Déconnexion
+                </button>
+            </form>
         </div>
-    </form>
+    </div>
+</nav>
+
+<div class="container-fluid mt-5 pt-5">
     <div class="row mb-4">
         <div class="col-sm-4 mx-auto">
-            <h2>Bienvenue <?= $user['team'] ?> !</h2>
             <p>
                 Vous êtes inscrit à : <?= $user['rsfp_product'] ?>
             </p>
             <p>
-                Nom de l'équipe : <?= $user['team'] ?>
+                Nom d'équipe : <?= $user['team'] ?>
             </p>
             <p>
                 Catégorie : <span id="categorie"></span> <?= $user['categorie_equipe'] ?>
@@ -27,7 +37,7 @@
         </div>
         <div class="col-sm-4 mx-auto"></div>
     </div>
-    <form action="" method="post">
+    <form action="<?= validation_form() ?>" method="POST">
         <div class="row">
             <div class="col-sm-4 mx-auto">
                 <h3 class="mb-3">Coureur 1 (responsable d'équipe) :</h3>
@@ -99,7 +109,7 @@
                 </div>
                 <div id="certif1_div" class="mb-3">
                     <label for="certif1" class="form-label">Certificat médical</label>
-                    <input class="form-control" type="file" id="certif1">
+                    <input class="form-control" type="file" id="certif1" name="certif1">
                 </div>
             </div>
             <div class="col-sm-4 mx-auto">
@@ -172,7 +182,7 @@
                 </div>
                 <div id="certif2_div" class="mb-3">
                     <label for="certif2" class="form-label">Certificat médical</label>
-                    <input class="form-control" type="file" id="certif2">
+                    <input class="form-control" type="file" id="certif2" name="certif2">
                 </div>
             </div>
         </div>
