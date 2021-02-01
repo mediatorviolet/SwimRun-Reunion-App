@@ -1,7 +1,10 @@
 <?php
-
+$count = 0;
+$required_input = [];
 function validation_form()
 {
+    global $count;
+    global $required_input;
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['send_modif'])) {
         $count = 0;
         $required_input = array(
@@ -27,25 +30,30 @@ function validation_form()
             array_push($required_input, 'num_licence1', 'club1');
         }
         if ($_POST['licence1'] == 'NON-LICENCIE') {
-            array_push($required_input, 'certif1');
+            if (!empty($_FILES['certif1'])) {
+                upload("certif1");
+            }
         }
         if ($_POST['licence2'] == 'FFTri') {
             array_push($required_input, 'num_licence2', 'club2');
         }
         if ($_POST['licence2'] == 'NON-LICENCIE') {
-            array_push($required_input, 'certif2');
+            if (!empty($_FILES['certif2'])) {
+                upload("certif2");
+            }
         }
 
         foreach ($required_input as $input) {
             if (empty($_POST["$input"])) {
                 $count++;
+                echo 'C';
             } else {
                 $_POST["$input"] = trim(htmlentities($_POST["$input"], ENT_QUOTES));
             }
         }
 
         if ($count > 0) {
-            echo 'Veuillez remplir tous les champs';
+            // echo 'Veuillez remplir tous les champs';
         } else {
             echo 'Modification OK';
             envoi_form();
@@ -74,7 +82,7 @@ function envoi_form()
         'licence_1' => $_POST['licence1'],
         'numero_licence_1' => $_POST['num_licence1'],
         'club1' => $_POST['club1'],
-        'certificat1' => $_POST['certif1'],
+        'certificat1' => 'uploads/'. md5(pathinfo($_FILES["certif1"]["name"])['filename']) . '.' . pathinfo($_FILES["certif1"]["name"])['extension'],
         'nom_relayeur_2' => $_POST['nom2'],
         'prenom_relayeur_2' => $_POST['prenom2'],
         'sexe2' => $_POST['sexe2'],
@@ -84,9 +92,29 @@ function envoi_form()
         'licence_2' => $_POST['licence2'],
         'numero_licence_2' => $_POST['num_licence2'],
         'club2' => $_POST['club2'],
-        'certificat2' => $_POST['certif2'],
+        'certificat2' => 'uploads/'. md5(pathinfo($_FILES["certif2"]["name"])['filename']) . '.' . pathinfo($_FILES["certif2"]["name"])['extension'],
         'etat' => 'a_valider'
     ));
     header('Location: index.php?page=espace_personnel');
     die;
+}
+
+function upload($certif)
+{
+    global $count;
+    if (isset($_FILES["$certif"]) and $_FILES["$certif"]["error"] == 0) {
+        if ($_FILES["$certif"]["size"] <= 1000000) {
+            $infosFichier = pathinfo($_FILES["$certif"]["name"]);
+            $extensionUpload = $infosFichier["extension"];
+            if ($extensionUpload == "pdf") {
+                move_uploaded_file($_FILES["$certif"]["tmp_name"], 'uploads/'. md5($infosFichier['filename']) . '.' . $infosFichier['extension']);
+            } else {
+                $count++;
+            }
+        } else {
+            $count++;
+        }
+    } else {
+        $count++;
+    }
 }
