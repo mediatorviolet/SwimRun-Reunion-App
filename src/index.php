@@ -9,6 +9,8 @@ if (!isset($_SESSION["admin"])) {
 }
 ?>
 
+<?php include 'functions/connexion_bdd.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
