@@ -11,13 +11,13 @@ function valider()
 
         if (isset($_POST['valide'])) {
             $bdd->exec('UPDATE en_attente SET etat = \'valide\' WHERE id_attente = "' . $_POST['id_attente'] . '"');
+            // header('Location: index.php?page=admin');
         }
 
         if (isset($_POST['non-valide'])) {
             $bdd->exec('UPDATE en_attente SET etat = \'non_valide\' WHERE id_attente = "' . $_POST['id_attente'] . '"');
         }
-
         header('Location: index.php?page=admin');
-        // die;
+        die;
     }
 }

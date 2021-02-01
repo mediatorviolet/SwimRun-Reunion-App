@@ -1,5 +1,20 @@
 <?php include 'functions/logout.php' ?>
 <?php include 'functions/admin_functions.php' ?>
+<?php
+connexion_bdd();
+valider();
+?>
+<?php
+function badge_count($etat)
+{
+    try { // Connexion à la BDD
+        $bdd = new PDO('mysql:host=127.0.0.1;dbname=swimrun-app;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+    } catch (Exception $e) { // Si erreur, on renvoi un message d'erreur
+        die('Erreur : ' . $e->getMessage());
+    }
+    return $bdd->query('SELECT COUNT(etat) FROM en_attente WHERE etat =\'' . $etat . '\'')->fetchColumn();
+}
+?>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
     <div class="container-fluid">
@@ -18,37 +33,32 @@
 </nav>
 
 <div class="container-fluid">
-    <ul class="nav nav-tabs nav-fill mt-5 pt-5" id="myTab" role="tablist">
+    <ul class="nav nav-tabs nav-fill mt-5 pt-5 mx-lg-4" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
             <a class="nav-link fw-bold active" id="a-valider-tab" data-bs-toggle="tab" href="#a-valider" role="tab" aria-controls="a-valider" aria-selected="true">
-                À valider <span class="badge ms-2">4</span>
+                À valider <span class="badge ms-2"><?= badge_count('a_valider') ?></span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link fw-bold" id="non-valide-tab" data-bs-toggle="tab" href="#non-valide" role="tab" aria-controls="non-valide" aria-selected="false">
-                Non validé <span class="badge ms-2">4</span>
+                Non validé <span class="badge ms-2"><?= badge_count('non_valide') ?></span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link fw-bold" id="valide-tab" data-bs-toggle="tab" href="#valide" role="tab" aria-controls="valide" aria-selected="false">
-                Validé <span class="badge ms-2">4</span>
+                Validé <span class="badge ms-2"><?= badge_count('valide') ?></span>
             </a>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active mt-5" id="a-valider" role="tabpanel" aria-labelledby="a-valider-tab">
             <?php
-            try { // Connexion à la BDD
-                $bdd = new PDO('mysql:host=127.0.0.1;dbname=swimrun-app;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-            } catch (Exception $e) { // Si erreur, on renvoi un message d'erreur
-                die('Erreur : ' . $e->getMessage());
-            }
 
             $reponse = $bdd->query('SELECT t.rsfp_product course, t.team team, e.* FROM team t RIGHT JOIN en_attente e ON e.id_team = t.id WHERE e.etat = \'a_valider\'');
 
             while ($donnees = $reponse->fetch()) { ?>
 
-                <div class="table-responsive mb-5">
+                <div class="table-responsive mb-5 mx-lg-4">
                     <table class="table table-hover table-bordered border-dark shadow">
                         <thead>
                             <tr>
@@ -105,8 +115,19 @@
                             </tr>
                             <tr>
                                 <th scope="row">Certificat médical</th>
-                                <td><?= $donnees['certificat1'] ?></td>
-                                <td><?= $donnees['certificat2'] ?></td>
+                                <?php
+                                if (!empty($donnees['certificat1'])) {
+                                    echo '<td><a href="' . $donnees['certificat1'] . '" target="_blank">Voir le certificat</a></td>';
+                                } else {
+                                    echo '<td></td>';
+                                }
+
+                                if (!empty($donnees['certificat2'])) {
+                                    echo '<td><a href="' . $donnees['certificat2'] . '" target="_blank">Voir le certificat</a></td>';
+                                } else {
+                                    echo '<td></td>';
+                                }
+                                ?>
                             </tr>
                         </tbody>
                     </table>
@@ -134,7 +155,7 @@
 
             while ($donnees = $reponse->fetch()) { ?>
 
-                <div class="table-responsive mb-5">
+                <div class="table-responsive mb-5 mx-lg-4">
                     <table class="table table-hover table-bordered border-dark shadow">
                         <thead>
                             <tr>
@@ -191,8 +212,19 @@
                             </tr>
                             <tr>
                                 <th scope="row">Certificat médical</th>
-                                <td><?= $donnees['certificat1'] ?></td>
-                                <td><?= $donnees['certificat2'] ?></td>
+                                <?php
+                                if (!empty($donnees['certificat1'])) {
+                                    echo '<td><a href="' . $donnees['certificat1'] . '" target="_blank">Voir le certificat</a></td>';
+                                } else {
+                                    echo '<td></td>';
+                                }
+
+                                if (!empty($donnees['certificat2'])) {
+                                    echo '<td><a href="' . $donnees['certificat2'] . '" target="_blank">Voir le certificat</a></td>';
+                                } else {
+                                    echo '<td></td>';
+                                }
+                                ?>
                             </tr>
                         </tbody>
                     </table>
@@ -215,7 +247,7 @@
 
             while ($donnees = $reponse->fetch()) { ?>
 
-                <div class="table-responsive mb-5">
+                <div class="table-responsive mb-5 mx-lg-4">
                     <table class="table table-hover table-bordered border-dark shadow">
                         <thead>
                             <tr>
@@ -272,8 +304,19 @@
                             </tr>
                             <tr>
                                 <th scope="row">Certificat médical</th>
-                                <td><?= $donnees['certificat1'] ?></td>
-                                <td><?= $donnees['certificat2'] ?></td>
+                                <?php
+                                if (!empty($donnees['certificat1'])) {
+                                    echo '<td><a href="' . $donnees['certificat1'] . '" target="_blank">Voir le certificat</a></td>';
+                                } else {
+                                    echo '<td></td>';
+                                }
+
+                                if (!empty($donnees['certificat2'])) {
+                                    echo '<td><a href="' . $donnees['certificat2'] . '" target="_blank">Voir le certificat</a></td>';
+                                } else {
+                                    echo '<td></td>';
+                                }
+                                ?>
                             </tr>
                         </tbody>
                     </table>
