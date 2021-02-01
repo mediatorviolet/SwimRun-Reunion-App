@@ -44,6 +44,6 @@
     background-color: #ff1744 !important;
 }
 
-.btn_deco_admin:hover {
+#btn_deco_admin:hover {
     border-color: #fff !important;
 }
