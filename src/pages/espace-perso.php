@@ -3,7 +3,7 @@
 <?php include 'functions/traitement.php'; ?>
 <?php validation_form() ?>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
     <div class="container-fluid">
         <a class="navbar-brand fw-bold mx-lg-4" href="#">Bienvenue <?= $user['team'] ?> !</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,13 +23,12 @@
     <?php
     if (isset($_POST['send_modif'])) {
         if ($count > 0) {
-            echo '<div class="alert alert-danger alert-dismissible fade show col-6 mx-auto mb-5 text-center fw-bold" role="alert">';
+            echo '<div class="alert alert-danger alert-dismissible fade show col-6 mx-auto mb-5 text-center fw-bold shadow" role="alert">';
             echo '<span>Une erreur est survenue.</span>';
             echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
             echo '</div>';
         } else {
-            // envoi_form();
-            echo '<div class="alert alert-success alert-dismissible fade show col-6 mx-auto mb-5 text-center fw-bold" role="alert">';
+            echo '<div class="alert alert-success alert-dismissible fade show col-6 mx-auto mb-5 text-center fw-bold shadow" role="alert">';
             echo '<span>Vos modifications ont bien été prises en compte.</span>';
             echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
             echo '</div>';
@@ -252,51 +251,38 @@
     nom_respo.addEventListener('keyup', respo, false);
     prenom_respo.addEventListener('keyup', respo, false);
 
-    // A refactoriser !!!!!!!!!!!!!
     // On affiche les inputs correspondant en fonction de si l'utilisateur coche 'FFTri' ou  'NON-LICENCIE'
     var radios1 = document.getElementsByName("licence1");
     var licence1 = document.getElementById("num_licence1_div");
     var certif1 = document.getElementById("certif1_div");
-    if ('<?= $user['type_licence_relayeur_1'] ?>' == 'FFTri') {
-        licence1.style.display = 'block';
-        certif1.style.display = 'none';
-    } else {
-        licence1.style.display = 'none';
-        certif1.style.display = 'block';
-    }
-    for (var i = 0; i < radios1.length; i++) {
-        radios1[i].onclick = function() {
-            var val = this.value;
-            if (val == 'FFTri') {
-                licence1.style.display = 'block';
-                certif1.style.display = 'none';
-            } else if (val == 'NON-LICENCIE') {
-                licence1.style.display = 'none';
-                certif1.style.display = 'block';
-            }
-        }
-    }
 
     var radios2 = document.getElementsByName("licence2");
     var licence2 = document.getElementById("num_licence2_div");
     var certif2 = document.getElementById("certif2_div");
-    if ('<?= $user['type_licence_relayeur_2'] ?>' == 'FFTri') {
-        licence2.style.display = 'block'; // show
-        certif2.style.display = 'none'; // hide
-    } else {
-        licence2.style.display = 'none'; // hide
-        certif2.style.display = 'block'; // show
-    }
-    for (var i = 0; i < radios2.length; i++) {
-        radios2[i].onclick = function() {
-            var val = this.value;
-            if (val == 'FFTri') {
-                licence2.style.display = 'block';
-                certif2.style.display = 'none';
-            } else if (val == 'NON-LICENCIE') {
-                licence2.style.display = 'none';
-                certif2.style.display = 'block';
+
+    function form_controller(radios, licence, certif, user) {
+        if (user == 'FFTri') {
+            licence.style.display = 'block';
+            certif.style.display = 'none';
+        } else {
+            licence.style.display = 'none';
+            certif.style.display = 'block';
+        }
+
+        for (let i = 0; i < radios.length; i++) {
+            radios[i].onclick = function () {
+                var val = this.value;
+                if (val == 'FFTri') {
+                    licence.style.display = 'block';
+                    certif.style.display = 'none';
+                } else {
+                    licence.style.display = 'none';
+                    certif.style.display = 'block';
+                }
             }
         }
     }
+
+    form_controller(radios1, licence1, certif1, "<?= $user['type_licence_relayeur_1'] ?>");
+    form_controller(radios2, licence2, certif2, "<?= $user['type_licence_relayeur_2'] ?>");
 </script>
