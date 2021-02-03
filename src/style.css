@@ -30,9 +30,9 @@
     border-color: #242424 !important;
 }
 
-.card-header {
-    background-color: #ff1744;
-    color: #fff;
+.card-header, .modal-header {
+    background-color: #ff1744 !important;
+    color: #fff !important;
 }
 
 .badge {
