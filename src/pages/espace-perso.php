@@ -21,19 +21,19 @@
 
 <div class="container-fluid mt-5 pt-5">
     <?php
-    // $infosFichier = pathinfo($_FILES['certif1']["name"]);
-    // $file_name = md5($_FILES['certif1']['name']);
-    // print_r(md5($infosFichier['filename']) . '.' . $infosFichier['extension']);
-    if ($count > 0) {
-        echo '<div class="alert alert-danger alert-dismissible fade show col-6 mx-auto mb-5 text-center fw-bold" role="alert">';
-        echo '<span>Une erreur est survenue.</span>';
-        echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-        echo '</div>';
-    } else if (isset($_POST['send_modif']) and $count <= 0) {
-        echo '<div class="alert alert-success alert-dismissible fade show col-6 mx-auto mb-5 text-center fw-bold" role="alert">';
-        echo '<span>Vos modifications ont bien été prises en compte.</span>';
-        echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-        echo '</div>';
+    if (isset($_POST['send_modif'])) {
+        if ($count > 0) {
+            echo '<div class="alert alert-danger alert-dismissible fade show col-6 mx-auto mb-5 text-center fw-bold" role="alert">';
+            echo '<span>Une erreur est survenue.</span>';
+            echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+            echo '</div>';
+        } else {
+            // envoi_form();
+            echo '<div class="alert alert-success alert-dismissible fade show col-6 mx-auto mb-5 text-center fw-bold" role="alert">';
+            echo '<span>Vos modifications ont bien été prises en compte.</span>';
+            echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+            echo '</div>';
+        }
     }
     ?>
     <div class="row mb-4">

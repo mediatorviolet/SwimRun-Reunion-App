@@ -29,14 +29,17 @@ function validation_form()
         if ($_POST['licence1'] == 'FFTri') {
             array_push($required_input, 'num_licence1', 'club1');
         }
+
         if ($_POST['licence1'] == 'NON-LICENCIE') {
             if (!empty($_FILES['certif1'])) {
                 upload("certif1");
             }
         }
+
         if ($_POST['licence2'] == 'FFTri') {
             array_push($required_input, 'num_licence2', 'club2');
         }
+
         if ($_POST['licence2'] == 'NON-LICENCIE') {
             if (!empty($_FILES['certif2'])) {
                 upload("certif2");
@@ -46,16 +49,12 @@ function validation_form()
         foreach ($required_input as $input) {
             if (empty($_POST["$input"])) {
                 $count++;
-                echo 'C';
             } else {
                 $_POST["$input"] = trim(htmlentities($_POST["$input"], ENT_QUOTES));
             }
         }
 
-        if ($count > 0) {
-            // echo 'Veuillez remplir tous les champs';
-        } else {
-            echo 'Modification OK';
+        if ($count <= 0) {
             envoi_form();
         }
     }
@@ -95,9 +94,10 @@ function envoi_form()
         'certificat2' => 'uploads/'. md5(pathinfo($_FILES["certif2"]["name"])['filename']) . '.' . pathinfo($_FILES["certif2"]["name"])['extension'],
         'etat' => 'a_valider'
     ));
-    header('Location: index.php?page=espace_personnel');
-    die;
+    // header('Location: index.php?page=espace_personnel');
+    // die;
 }
+
 
 function upload($certif)
 {
@@ -106,8 +106,9 @@ function upload($certif)
         if ($_FILES["$certif"]["size"] <= 1000000) {
             $infosFichier = pathinfo($_FILES["$certif"]["name"]);
             $extensionUpload = $infosFichier["extension"];
+            $nomFichier = md5($infosFichier['filename']) . '.' . $infosFichier['extension'];
             if ($extensionUpload == "pdf") {
-                move_uploaded_file($_FILES["$certif"]["tmp_name"], 'uploads/'. md5($infosFichier['filename']) . '.' . $infosFichier['extension']);
+                move_uploaded_file($_FILES["$certif"]["tmp_name"], 'uploads/'. $nomFichier);
             } else {
                 $count++;
             }
