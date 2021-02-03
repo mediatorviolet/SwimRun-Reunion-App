@@ -1,5 +1,5 @@
 <?php include 'functions/logout.php' ?>
-<?php $user =  $_SESSION['user']; ?>
+<?php $user = $_SESSION['user']; ?>
 <?php include 'functions/traitement.php'; ?>
 <?php validation_form() ?>
 
@@ -220,6 +220,7 @@
         send_modif.style.display = 'block';
     }
 
+
     // ca marche pas à check
     var radios_S1 = document.getElementsByName('sexe1');
     var radios_S2 = document.getElementsByName('sexe2');
@@ -238,6 +239,7 @@
         }
     }
 
+
     // Changement dynamique du nom du responsable d'équipe
     var nom_respo = document.getElementById('nom1');
     var prenom_respo = document.getElementById('prenom1');
@@ -250,6 +252,7 @@
 
     nom_respo.addEventListener('keyup', respo, false);
     prenom_respo.addEventListener('keyup', respo, false);
+
 
     // On affiche les inputs correspondant en fonction de si l'utilisateur coche 'FFTri' ou  'NON-LICENCIE'
     var radios1 = document.getElementsByName("licence1");
@@ -270,7 +273,7 @@
         }
 
         for (let i = 0; i < radios.length; i++) {
-            radios[i].onclick = function () {
+            radios[i].onclick = function() {
                 var val = this.value;
                 if (val == 'FFTri') {
                     licence.style.display = 'block';
