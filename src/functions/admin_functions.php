@@ -11,7 +11,6 @@ function valider()
 
         if (isset($_POST['valide'])) {
             $bdd->exec('UPDATE en_attente SET etat = \'valide\' WHERE id_attente = "' . $_POST['id_attente'] . '"');
-            // header('Location: index.php?page=admin');
         }
 
         if (isset($_POST['non-valide'])) {
@@ -20,4 +19,9 @@ function valider()
         header('Location: index.php?page=admin');
         die;
     }
+}
+
+// Fonction qui compare les valeurs de la table team avec celles de la table en_attente, si elles sont différentes, la case correspondante du tableau est colorée en jaune
+function highlight_change($t, $e) {
+    echo $t != $e ? "<td class='table-warning'>" . $e . "</td>" : "<td>" . $e . "</td>";
 }

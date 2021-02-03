@@ -77,28 +77,28 @@ function envoi_form()
 
     // On fait appel à la fonction verif_team() pour savoir si on doit ajouter une ligne ou modifier une ligne déjà existante
     if (verif_team() == true) {
-        $req = $bdd->prepare('UPDATE en_attente SET id_team = :id_team, nom_relayeur_1 = :nom_relayeur_1, prenom_relayeur_1 = :prenom_relayeur_1, sexe1 = :sexe1, tshirt1 = :tshirt1, annee_naissance_1 = :annee_naissance_1, telephone1 = :telephone1, licence_1 = :licence_1, numero_licence_1 = :numero_licence_1, club1 = :club1, certificat1 = :certificat1, nom_relayeur_2 = :nom_relayeur_2, prenom_relayeur_2 = :prenom_relayeur_2, sexe2 = :sexe2, tshirt2 = :tshirt2, annee_naissance_2 = :annee_naissance_2, telephone2 = :telephone2, licence_2 = :licence_2, numero_licence_2 = :numero_licence_2, club2 = :club2, certificat2 = :certificat2, etat = :etat WHERE id_team = "' . $_SESSION['user']['id'] . '"');
+        $req = $bdd->prepare('UPDATE en_attente SET id_team = :id_team, nom1 = :nom1, prenom1 = :prenom1, sexe1 = :sexe1, tshirt1 = :tshirt1, annee_naissance1 = :annee_naissance1, telephone1 = :telephone1, licence_1 = :licence_1, numero_licence_1 = :numero_licence_1, club1 = :club1, certificat1 = :certificat1, nom2 = :nom2, prenom2 = :prenom2, sexe2 = :sexe2, tshirt2 = :tshirt2, annee_naissance2 = :annee_naissance2, telephone2 = :telephone2, licence_2 = :licence_2, numero_licence_2 = :numero_licence_2, club2 = :club2, certificat2 = :certificat2, etat = :etat WHERE id_team = "' . $_SESSION['user']['id'] . '"');
     } else {
-        $req = $bdd->prepare('INSERT INTO en_attente(id_team, nom_relayeur_1, prenom_relayeur_1, sexe1, tshirt1, annee_naissance_1, telephone1, licence_1, numero_licence_1, club1, certificat1, nom_relayeur_2, prenom_relayeur_2, sexe2, tshirt2, annee_naissance_2, telephone2, licence_2, numero_licence_2, club2, certificat2, etat) VALUES(:id_team, :nom_relayeur_1, :prenom_relayeur_1, :sexe1, :tshirt1, :annee_naissance_1, :telephone1, :licence_1, :numero_licence_1, :club1, :certificat1, :nom_relayeur_2, :prenom_relayeur_2, :sexe2, :tshirt2, :annee_naissance_2, :telephone2, :licence_2, :numero_licence_2, :club2, :certificat2, :etat)');
+        $req = $bdd->prepare('INSERT INTO en_attente(id_team, nom1, prenom1, sexe1, tshirt1, annee_naissance1, telephone1, licence_1, numero_licence_1, club1, certificat1, nom2, prenom2, sexe2, tshirt2, annee_naissance2, telephone2, licence_2, numero_licence_2, club2, certificat2, etat) VALUES(:id_team, :nom1, :prenom1, :sexe1, :tshirt1, :annee_naissance1, :telephone1, :licence_1, :numero_licence_1, :club1, :certificat1, :nom2, :prenom2, :sexe2, :tshirt2, :annee_naissance2, :telephone2, :licence_2, :numero_licence_2, :club2, :certificat2, :etat)');
     }
 
     $req->execute(array(
         'id_team' => $_SESSION['user']['id'],
-        'nom_relayeur_1' => $_POST['nom1'],
-        'prenom_relayeur_1' => $_POST['prenom1'],
+        'nom1' => $_POST['nom1'],
+        'prenom1' => $_POST['prenom1'],
         'sexe1' => $_POST['sexe1'],
         'tshirt1' => $_POST['t-shirt1'],
-        'annee_naissance_1' => $_POST['annee_naissance1'],
+        'annee_naissance1' => $_POST['annee_naissance1'],
         'telephone1' => $_POST['tel1'],
         'licence_1' => $_POST['licence1'],
         'numero_licence_1' => $_POST['num_licence1'],
         'club1' => $_POST['club1'],
         'certificat1' => isset(pathinfo($_FILES["certif1"]["name"])['extension']) ? 'uploads/' . md5(pathinfo($_FILES["certif1"]["name"])['filename']) . '.' . pathinfo($_FILES["certif1"]["name"])['extension']  : '',
-        'nom_relayeur_2' => $_POST['nom2'],
-        'prenom_relayeur_2' => $_POST['prenom2'],
+        'nom2' => $_POST['nom2'],
+        'prenom2' => $_POST['prenom2'],
         'sexe2' => $_POST['sexe2'],
         'tshirt2' => $_POST['t-shirt2'],
-        'annee_naissance_2' => $_POST['annee_naissance2'],
+        'annee_naissance2' => $_POST['annee_naissance2'],
         'telephone2' => $_POST['tel2'],
         'licence_2' => $_POST['licence2'],
         'numero_licence_2' => $_POST['num_licence2'],
