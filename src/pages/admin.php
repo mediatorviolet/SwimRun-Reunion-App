@@ -54,9 +54,9 @@ function badge_count($etat)
         <div class="tab-pane fade show active mt-5" id="a-valider" role="tabpanel" aria-labelledby="a-valider-tab">
             <?php
 
-            $reponse = $bdd->query('SELECT t.rsfp_product course, t.team team, e.* FROM team t RIGHT JOIN en_attente e ON e.id_team = t.id WHERE e.etat = \'a_valider\'');
+            $req = $bdd->query('SELECT t.rsfp_product course, t.team team, e.* FROM team t RIGHT JOIN en_attente e ON e.id_team = t.id WHERE e.etat = \'a_valider\'');
 
-            while ($donnees = $reponse->fetch()) { ?>
+            while ($donnees = $req->fetch()) { ?>
 
                 <div class="table-responsive mb-5 mx-lg-4">
                     <table class="table table-hover table-bordered border-dark shadow">
@@ -140,7 +140,7 @@ function badge_count($etat)
             <?php
             }
 
-            $reponse->closeCursor();
+            $req->closeCursor();
             ?>
         </div>
         <div class="tab-pane fade mt-5" id="non-valide" role="tabpanel" aria-labelledby="non-valide-tab">
@@ -151,9 +151,9 @@ function badge_count($etat)
                 die('Erreur : ' . $e->getMessage());
             }
 
-            $reponse = $bdd->query('SELECT t.rsfp_product course, t.team team, e.* FROM team t RIGHT JOIN en_attente e ON e.id_team = t.id WHERE e.etat = \'non_valide\'');
+            $req = $bdd->query('SELECT t.rsfp_product course, t.team team, e.* FROM team t RIGHT JOIN en_attente e ON e.id_team = t.id WHERE e.etat = \'non_valide\'');
 
-            while ($donnees = $reponse->fetch()) { ?>
+            while ($donnees = $req->fetch()) { ?>
 
                 <div class="table-responsive mb-5 mx-lg-4">
                     <table class="table table-hover table-bordered border-dark shadow">
@@ -232,7 +232,7 @@ function badge_count($etat)
             <?php
             }
 
-            $reponse->closeCursor();
+            $req->closeCursor();
             ?>
         </div>
         <div class="tab-pane fade mt-5" id="valide" role="tabpanel" aria-labelledby="valide-tab">
@@ -243,9 +243,9 @@ function badge_count($etat)
                 die('Erreur : ' . $e->getMessage());
             }
 
-            $reponse = $bdd->query('SELECT t.rsfp_product course, t.team team, e.* FROM team t RIGHT JOIN en_attente e ON e.id_team = t.id WHERE e.etat = \'valide\'');
+            $req = $bdd->query('SELECT t.rsfp_product course, t.team team, e.* FROM team t RIGHT JOIN en_attente e ON e.id_team = t.id WHERE e.etat = \'valide\'');
 
-            while ($donnees = $reponse->fetch()) { ?>
+            while ($donnees = $req->fetch()) { ?>
 
                 <div class="table-responsive mb-5 mx-lg-4">
                     <table class="table table-hover table-bordered border-dark shadow">
@@ -324,7 +324,7 @@ function badge_count($etat)
             <?php
             }
 
-            $reponse->closeCursor();
+            $req->closeCursor();
             ?>
         </div>
     </div>
