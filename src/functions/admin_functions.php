@@ -30,5 +30,5 @@ function valider()
 // Fonction qui compare les valeurs de la table team avec celles de la table en_attente, si elles sont différentes, la case correspondante du tableau est colorée en jaune
 function highlight_change($t, $e)
 {
-    echo $t != $e ? "<td class='table-warning'>" . $e . "</td>" : "<td>" . $e . "</td>";
+    echo $t != html_entity_decode($e) ? "<td class='table-warning'>" . $e . "</td>" : "<td>" . $e . "</td>";
 }
