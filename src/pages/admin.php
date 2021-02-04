@@ -18,7 +18,9 @@ function badge_count($etat)
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
     <div class="container-fluid">
-        <a class="navbar-brand fw-bold mx-lg-4" href="#">Tableau de bord administrateur</a>
+        <a class="navbar-brand fw-bold mx-lg-4" href="#">
+            Tableau de bord administrateur
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -85,15 +87,15 @@ function badge_count($etat)
                             <tr>
                                 <th scope="row">Nom</th>
                                 <?php
-                                highlight_change($donnees['nom_relayeur_1'], $donnees['nom1']);
-                                highlight_change($donnees['nom_relayeur_2'], $donnees['nom2']);
+                                highlight_change($donnees['nom_relayeur_1'], html_entity_decode($donnees['nom1']));
+                                highlight_change($donnees['nom_relayeur_2'], html_entity_decode($donnees['nom2']));
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Prénom</th>
                                 <?php
-                                highlight_change($donnees['prenom_relayeur_1'], $donnees['prenom1']);
-                                highlight_change($donnees['prenom_relayeur_2'], $donnees['prenom2']);
+                                highlight_change($donnees['prenom_relayeur_1'], html_entity_decode($donnees['prenom1']));
+                                highlight_change($donnees['prenom_relayeur_2'], html_entity_decode($donnees['prenom2']));
                                 ?>
                             </tr>
                             <tr>
@@ -115,6 +117,13 @@ function badge_count($etat)
                                 <?php
                                 highlight_change($donnees['annee_naissance_1'], $donnees['annee_naissance1']);
                                 highlight_change($donnees['annee_naissance_2'], $donnees['annee_naissance2']);
+                                ?>
+                            </tr>
+                            <tr>
+                                <th scope="row">Email</th>
+                                <?php
+                                highlight_change($donnees['email_relayeur_1'], html_entity_decode($donnees['email1']));
+                                highlight_change($donnees['email_relayeur_2'], html_entity_decode($donnees['email2']));
                                 ?>
                             </tr>
                             <tr>
@@ -141,8 +150,8 @@ function badge_count($etat)
                             <tr>
                                 <th scope="row">Nom du club</th>
                                 <?php
-                                highlight_change($donnees['club_relayeur_1'], $donnees['club1']);
-                                highlight_change($donnees['club_relayeur_2'], $donnees['club2']);
+                                highlight_change($donnees['club_relayeur_1'], html_entity_decode($donnees['club1']));
+                                highlight_change($donnees['club_relayeur_2'], html_entity_decode($donnees['club2']));
                                 ?>
                             </tr>
                             <tr>
@@ -211,15 +220,15 @@ function badge_count($etat)
                             <tr>
                                 <th scope="row">Nom</th>
                                 <?php
-                                highlight_change($donnees['nom_relayeur_1'], $donnees['nom1']);
-                                highlight_change($donnees['nom_relayeur_2'], $donnees['nom2']);
+                                highlight_change($donnees['nom_relayeur_1'], html_entity_decode($donnees['nom1']));
+                                highlight_change($donnees['nom_relayeur_2'], html_entity_decode($donnees['nom2']));
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Prénom</th>
                                 <?php
-                                highlight_change($donnees['prenom_relayeur_1'], $donnees['prenom1']);
-                                highlight_change($donnees['prenom_relayeur_2'], $donnees['prenom2']);
+                                highlight_change($donnees['prenom_relayeur_1'], html_entity_decode($donnees['prenom1']));
+                                highlight_change($donnees['prenom_relayeur_2'], html_entity_decode($donnees['prenom2']));
                                 ?>
                             </tr>
                             <tr>
@@ -241,6 +250,13 @@ function badge_count($etat)
                                 <?php
                                 highlight_change($donnees['annee_naissance_1'], $donnees['annee_naissance1']);
                                 highlight_change($donnees['annee_naissance_2'], $donnees['annee_naissance2']);
+                                ?>
+                            </tr>
+                            <tr>
+                                <th scope="row">Email</th>
+                                <?php
+                                highlight_change($donnees['email_relayeur_1'], html_entity_decode($donnees['email1']));
+                                highlight_change($donnees['email_relayeur_2'], html_entity_decode($donnees['email2']));
                                 ?>
                             </tr>
                             <tr>
@@ -267,8 +283,8 @@ function badge_count($etat)
                             <tr>
                                 <th scope="row">Nom du club</th>
                                 <?php
-                                highlight_change($donnees['club_relayeur_1'], $donnees['club1']);
-                                highlight_change($donnees['club_relayeur_2'], $donnees['club2']);
+                                highlight_change($donnees['club_relayeur_1'], html_entity_decode($donnees['club1']));
+                                highlight_change($donnees['club_relayeur_2'], html_entity_decode($donnees['club2']));
                                 ?>
                             </tr>
                             <tr>
@@ -308,15 +324,15 @@ function badge_count($etat)
                             <tr>
                                 <th scope="row">Nom</th>
                                 <?php
-                                highlight_change($donnees['nom_relayeur_1'], $donnees['nom1']);
-                                highlight_change($donnees['nom_relayeur_2'], $donnees['nom2']);
+                                highlight_change($donnees['nom_relayeur_1'], html_entity_decode($donnees['nom1']));
+                                highlight_change($donnees['nom_relayeur_2'], html_entity_decode($donnees['nom2']));
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Prénom</th>
                                 <?php
-                                highlight_change($donnees['prenom_relayeur_1'], $donnees['prenom1']);
-                                highlight_change($donnees['prenom_relayeur_2'], $donnees['prenom2']);
+                                highlight_change($donnees['prenom_relayeur_1'], html_entity_decode($donnees['prenom1']));
+                                highlight_change($donnees['prenom_relayeur_2'], html_entity_decode($donnees['prenom2']));
                                 ?>
                             </tr>
                             <tr>
@@ -338,6 +354,13 @@ function badge_count($etat)
                                 <?php
                                 highlight_change($donnees['annee_naissance_1'], $donnees['annee_naissance1']);
                                 highlight_change($donnees['annee_naissance_2'], $donnees['annee_naissance2']);
+                                ?>
+                            </tr>
+                            <tr>
+                                <th scope="row">Email</th>
+                                <?php
+                                highlight_change($donnees['email_relayeur_1'], html_entity_decode($donnees['email1']));
+                                highlight_change($donnees['email_relayeur_2'], html_entity_decode($donnees['email2']));
                                 ?>
                             </tr>
                             <tr>
@@ -364,8 +387,8 @@ function badge_count($etat)
                             <tr>
                                 <th scope="row">Nom du club</th>
                                 <?php
-                                highlight_change($donnees['club_relayeur_1'], $donnees['club1']);
-                                highlight_change($donnees['club_relayeur_2'], $donnees['club2']);
+                                highlight_change($donnees['club_relayeur_1'], html_entity_decode($donnees['club1']));
+                                highlight_change($donnees['club_relayeur_2'], html_entity_decode($donnees['club2']));
                                 ?>
                             </tr>
                             <tr>
