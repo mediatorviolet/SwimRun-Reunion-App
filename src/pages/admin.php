@@ -34,7 +34,7 @@ function badge_count($etat)
     </div>
 </nav>
 
-<div class="container-fluid my-5">
+<div class="container-fluid my-5" style="min-height: 100vh;">
     <?php
     if (isset($_POST['valide']) or isset($_POST['non-valide'])) {
         if ($bool) {
@@ -412,3 +412,12 @@ function badge_count($etat)
     </div>
 
 </div>
+
+<footer class="text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3">
+        © 2021 Copyright:
+        <a class="nav-link" href="https://github.com/mediatorviolet" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+    <!-- Copyright -->
+</footer>

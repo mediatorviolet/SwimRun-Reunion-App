@@ -47,3 +47,16 @@
 #btn_deco_admin:hover {
     border-color: #fff !important;
 }
+
+footer {
+    background-color: #242424;
+}
+
+footer div {
+    color: #fff;
+}
+
+.fa-github {
+    color: #fff;
+    font-size: 2rem;
+}

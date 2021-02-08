@@ -19,7 +19,7 @@
     </div>
 </nav>
 
-<div class="container-fluid mt-5 pt-5">
+<div class="container-fluid mt-5">
     <?php
     if (isset($_POST['send_modif'])) {
         if ($count > 0) {
@@ -44,7 +44,7 @@
                 Nom d'équipe : <?= $user['team'] ?>
             </p>
             <p>
-                Catégorie : <span id="categorie"></span> <?= $user['categorie_equipe'] ?>
+                Catégorie : <span id="categorie"></span>
             </p>
             <p>
                 Responsable d'équipe : <span id="respo_equipe"></span>
@@ -127,7 +127,7 @@
                     <input class="form-control" type="file" id="certif1" name="certif1">
                 </div>
             </div>
-            <div class="col-sm-4 mx-auto">
+            <div class="col-sm-4 mx-auto mt-md-0 mt-4">
                 <h3 class="mb-3">Coureur 2 :</h3>
                 <div class="mb-3">
                     <label for="nom2" class="form-label">Nom</label>
@@ -207,85 +207,17 @@
     </form>
 </div>
 
+<footer class="text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3">
+        © 2021 Copyright:
+        <a class="nav-link" href="https://github.com/mediatorviolet" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+    <!-- Copyright -->
+</footer>
+
+<script src="functions/script.js"></script>
 <script>
-    // On affiche le bouton que si un champ est modifié
-    var input = document.getElementsByTagName('input');
-    var send_modif = document.getElementById('send_modif');
-    send_modif.style.display = 'none';
-    for (let i = 0; i < input.length; i++) {
-        input[i].addEventListener('change', afficher_btn);
-    }
-
-    function afficher_btn() {
-        send_modif.style.display = 'block';
-    }
-
-
-    // ca marche pas à check
-    var radios_S1 = document.getElementsByName('sexe1');
-    var radios_S2 = document.getElementsByName('sexe2');
-    var categorie = document.getElementById('categorie');
-    for (var i = 0; i < radios_S1.length; i++) {
-        radios_S1[i].onclick = function() {
-            var val = this.value;
-            for (var i = 0; i < radios_S2.length; i++) {
-                radios_S2[i].onclick = function() {
-                    var val2 = this.value;
-                    if (val != val2) {
-                        categorie.innerHTML = 'MIXTE';
-                    }
-                }
-            }
-        }
-    }
-
-
-    // Changement dynamique du nom du responsable d'équipe
-    var nom_respo = document.getElementById('nom1');
-    var prenom_respo = document.getElementById('prenom1');
-    var respo_equipe = document.getElementById('respo_equipe');
-    respo_equipe.innerHTML = nom_respo.value + ' ' + prenom_respo.value;
-
-    function respo() {
-        respo_equipe.innerHTML = nom_respo.value + ' ' + prenom_respo.value;
-    }
-
-    nom_respo.addEventListener('keyup', respo, false);
-    prenom_respo.addEventListener('keyup', respo, false);
-
-
-    // On affiche les inputs correspondant en fonction de si l'utilisateur coche 'FFTri' ou  'NON-LICENCIE'
-    var radios1 = document.getElementsByName("licence1");
-    var licence1 = document.getElementById("num_licence1_div");
-    var certif1 = document.getElementById("certif1_div");
-
-    var radios2 = document.getElementsByName("licence2");
-    var licence2 = document.getElementById("num_licence2_div");
-    var certif2 = document.getElementById("certif2_div");
-
-    function form_controller(radios, licence, certif, user) {
-        if (user == 'FFTri') {
-            licence.style.display = 'block';
-            certif.style.display = 'none';
-        } else {
-            licence.style.display = 'none';
-            certif.style.display = 'block';
-        }
-
-        for (let i = 0; i < radios.length; i++) {
-            radios[i].onclick = function() {
-                var val = this.value;
-                if (val == 'FFTri') {
-                    licence.style.display = 'block';
-                    certif.style.display = 'none';
-                } else {
-                    licence.style.display = 'none';
-                    certif.style.display = 'block';
-                }
-            }
-        }
-    }
-
     form_controller(radios1, licence1, certif1, "<?= $user['type_licence_relayeur_1'] ?>");
     form_controller(radios2, licence2, certif2, "<?= $user['type_licence_relayeur_2'] ?>");
 </script>
