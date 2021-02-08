@@ -68,6 +68,7 @@ function valider()
             $p1 = $donnees['p1'];
             $p2 = $donnees['p2'];
             $template = 'valide-mail.html';
+            // Ligne à décommenter pour envoyer le mail
             // send_mail($to, 'Modifications validées', $template, $p1, $p2, '', '', '');
             $req->closeCursor();
             if (send_mail($to, 'Modifications validées', $template, $p1, $p2, '', '', '') == true) {
@@ -87,6 +88,7 @@ function valider()
                 $code = $donnees['code'];
                 $motif = $_POST['motif'];
                 $template = 'non-valide-mail.html';
+                // Ligne à décommenter pour envoyer le mail
                 // send_mail($to, 'Modifications non validées', $template, $p1, $p2, $motif, $team, $code);
                 $req->closeCursor();
                 if (send_mail($to, 'Modifications non validées', $template, $p1, $p2, $motif, $team, $code) == true) {
