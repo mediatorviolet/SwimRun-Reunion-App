@@ -19,7 +19,7 @@ function send_mail($to, $subject, $template, $p1, $p2, $motif, $team, $code)
         //Server settings
         // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
         $mail->isSMTP();
-        $mail->Host       = 'mail.gmx.com ';
+        $mail->Host       = 'mail.gmx.com';
         $mail->SMTPAuth   = true;
         $mail->Username   = 'emaileur@gmx.fr';
         $mail->Password   = 'Pouetpouet123';
@@ -43,9 +43,10 @@ function send_mail($to, $subject, $template, $p1, $p2, $motif, $team, $code)
         $mail->AltBody = strip_tags($message);
 
         $mail->send();
-        echo 'Message has been sent';
+        return true;
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        return false;
     }
 }
 
@@ -61,6 +62,16 @@ function valider()
         }
 
         if (isset($_POST['valide'])) {
+            $req = $bdd->query('SELECT prenom1 p1, prenom2 p2, email1 FROM en_attente WHERE id_attente = "' . $_POST['id_attente'] . '"');
+            $donnees = $req->fetch();
+            $to = $donnees['email1'];
+            $p1 = $donnees['p1'];
+            $p2 = $donnees['p2'];
+            $template = 'valide-mail.html';
+            // send_mail($to, 'Modifications validées', $template, $p1, $p2, '', '', '');
+            $req->closeCursor();
+            if (send_mail($to, 'Modifications validées', $template, $p1, $p2, '', '', '') == true) {
+            }
             $bdd->exec('UPDATE en_attente SET etat = \'valide\' WHERE id_attente = "' . $_POST['id_attente'] . '"');
             $bool = true;
         }
@@ -78,6 +89,8 @@ function valider()
                 $template = 'non-valide-mail.html';
                 // send_mail($to, 'Modifications non validées', $template, $p1, $p2, $motif, $team, $code);
                 $req->closeCursor();
+                if (send_mail($to, 'Modifications non validées', $template, $p1, $p2, $motif, $team, $code) == true) {
+                }
                 $bdd->exec('UPDATE en_attente SET etat = \'non_valide\' WHERE id_attente = "' . $_POST['id_attente'] . '"');
                 $bool = false;
             }
