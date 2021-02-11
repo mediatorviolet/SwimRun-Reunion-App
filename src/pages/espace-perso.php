@@ -1,7 +1,14 @@
-<?php include 'functions/logout.php' ?>
-<?php $user = $_SESSION['user']; ?>
-<?php include 'functions/traitement.php'; ?>
-<?php validation_form() ?>
+<?php
+require('functions/auth.php');
+if (!Auth::isLogged()) {
+    header('Location: index.php?page=connexion');
+}
+
+include 'functions/logout.php';
+include 'functions/traitement.php';
+validation_form();
+$user = $_SESSION['auth'];
+?>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
     <div class="container-fluid">
@@ -34,12 +41,16 @@
             echo '</div>';
         }
     }
+    echo '<div class="alert alert-danger alert-dismissible fade show col-6 mx-auto mb-5 text-center fw-bold shadow" role="alert">';
+    echo '<span>Une erreur est survenue.</span>';
+    echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+    echo '</div>';
     ?>
     <div class="row mb-4">
         <div class="col-sm-4 mx-auto d-flex align-items-center">
             <div>
                 <p>
-                    Vous êtes inscrit à : <b><?= $user['rsfp_product'] ?></b>
+                    Vous êtes inscrit à : <b><?= $user['course'] ?></b>
                 </p>
                 <p>
                     Nom d'équipe : <b><?= $user['team'] ?></b>
@@ -50,7 +61,7 @@
                 <p>
                     Responsable d'équipe : <span id="respo_equipe" class="fw-bold"></span>
                 </p>
-            <div class="divider"></div>
+                <div class="divider"></div>
             </div>
         </div>
         <div class="col-sm-4 mx-auto d-flex justify-content-center">
@@ -66,21 +77,21 @@
                 <div class="divider"></div>
                 <div class="mb-3">
                     <label for="nom1" class="form-label">Nom</label>
-                    <input type="text" class="form-control fw-bold" id="nom1" name="nom1" value="<?= $user['nom_relayeur_1'] ?>" required>
+                    <input type="text" class="form-control fw-bold" id="nom1" name="nom1" value="<?= $user['nom1'] ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="prenom1" class="form-label">Prénom</label>
-                    <input type="text" class="form-control fw-bold" id="prenom1" name="prenom1" value="<?= $user['prenom_relayeur_1'] ?>" required>
+                    <input type="text" class="form-control fw-bold" id="prenom1" name="prenom1" value="<?= $user['prenom1'] ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="sexe1" class="form-label">Sexe</label>
                     <div class="d-flex">
                         <div class="form-check me-4">
-                            <input class="form-check-input" type="radio" name="sexe1" id="sexe1_1" value="F" <?= $user['sexe_relayeur_1'] == 'F' ? 'checked' : '' ?> required>
+                            <input class="form-check-input" type="radio" name="sexe1" id="sexe1_1" value="F" <?= $user['sexe1'] == 'F' ? 'checked' : '' ?> required>
                             <label class="form-check-label fw-bold" for="sexe1_1">F</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sexe1" id="sexe1_2" value="M" <?= $user['sexe_relayeur_1'] == 'M' ? 'checked' : '' ?> required>
+                            <input class="form-check-input" type="radio" name="sexe1" id="sexe1_2" value="M" <?= $user['sexe1'] == 'M' ? 'checked' : '' ?> required>
                             <label class="form-check-label fw-bold" for="sexe1_2">M</label>
                         </div>
                     </div>
@@ -89,19 +100,19 @@
                     <label for="t-shirt1" class="form-label">Taille de t-shirt</label>
                     <select class="form-select fw-bold" aria-label="Taille de t-shirt" name="t-shirt1" required>
                         <option>Sélectionnez une taille de t-shirt</option>
-                        <option value="S" <?= $user['tshirt_relayeur_1'] == 'S' ? 'selected' : '' ?>>S</option>
-                        <option value="M" <?= $user['tshirt_relayeur_1'] == 'M' ? 'selected' : '' ?>>M</option>
-                        <option value="L" <?= $user['tshirt_relayeur_1'] == 'L' ? 'selected' : '' ?>>L</option>
-                        <option value="XL" <?= $user['tshirt_relayeur_1'] == 'XL' ? 'selected' : '' ?>>XL</option>
+                        <option value="S" <?= $user['t-shirt1'] == 'S' ? 'selected' : '' ?>>S</option>
+                        <option value="M" <?= $user['t-shirt1'] == 'M' ? 'selected' : '' ?>>M</option>
+                        <option value="L" <?= $user['t-shirt1'] == 'L' ? 'selected' : '' ?>>L</option>
+                        <option value="XL" <?= $user['t-shirt1'] == 'XL' ? 'selected' : '' ?>>XL</option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="annee_naissance1" class="form-label">Année de naissance</label>
-                    <input type="tel" maxlength="4" class="form-control fw-bold" id="annee_naissance1" name="annee_naissance1" value="<?= $user['annee_naissance_1'] ?>" required>
+                    <input type="tel" maxlength="4" class="form-control fw-bold" id="annee_naissance1" name="annee_naissance1" value="<?= $user['annee_naissance1'] ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="email1" class="form-label">Email</label>
-                    <input type="email" class="form-control fw-bold" id="email1" name="email1" value="<?= $user['email_relayeur_1'] ?>" required>
+                    <input type="email" class="form-control fw-bold" id="email1" name="email1" value="<?= $user['email1'] ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="tel1" class="form-label">Téléphone</label>
@@ -111,11 +122,11 @@
                     <label for="licence1" class="form-label">Type de licence</label>
                     <div class="d-flex">
                         <div class="form-check me-4">
-                            <input class="form-check-input" type="radio" name="licence1" id="licence1_1" value="FFTri" <?= $user['type_licence_relayeur_1'] == 'FFTri' ? 'checked' : '' ?> required>
+                            <input class="form-check-input" type="radio" name="licence1" id="licence1_1" value="FFTri" <?= $user['licence1'] == 'FFTri' ? 'checked' : '' ?> required>
                             <label class="form-check-label fw-bold" for="licence1_1">FFTri</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="licence1" id="licence1_2" value="NON-LICENCIE" <?= $user['type_licence_relayeur_1'] == 'NON-LICENCIE' ? 'checked' : '' ?> required>
+                            <input class="form-check-input" type="radio" name="licence1" id="licence1_2" value="NON-LICENCIE" <?= $user['licence1'] == 'NON-LICENCIE' ? 'checked' : '' ?> required>
                             <label class="form-check-label fw-bold" for="licence1_2">NON-LICENCIE</label>
                         </div>
                     </div>
@@ -123,11 +134,11 @@
                 <div id="num_licence1_div">
                     <div class="mb-3">
                         <label for="num_licence1" class="form-label">Numéro de licence</label>
-                        <input type="text" class="form-control fw-bold" id="num_licence1" name="num_licence1" value="<?= $user['numero_licence_relayeur_1'] ?>">
+                        <input type="text" class="form-control fw-bold" id="num_licence1" name="num_licence1" value="<?= $user['num_licence1'] ?>">
                     </div>
                     <div class="mb-3">
                         <label for="club1" class="form-label">Nom du club</label>
-                        <input type="text" class="form-control fw-bold" id="club1" name="club1" value="<?= $user['club_relayeur_1'] ?>">
+                        <input type="text" class="form-control fw-bold" id="club1" name="club1" value="<?= $user['club1'] ?>">
                     </div>
                 </div>
                 <div id="certif1_div" class="mb-3">
@@ -140,21 +151,21 @@
                 <div class="divider"></div>
                 <div class="mb-3">
                     <label for="nom2" class="form-label">Nom</label>
-                    <input type="text" class="form-control fw-bold" id="nom2" name="nom2" value="<?= $user['nom_relayeur_2'] ?>" required>
+                    <input type="text" class="form-control fw-bold" id="nom2" name="nom2" value="<?= $user['nom2'] ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="prenom2" class="form-label">Prénom</label>
-                    <input type="text" class="form-control fw-bold" id="prenom2" name="prenom2" value="<?= $user['prenom_relayeur_2'] ?>" required>
+                    <input type="text" class="form-control fw-bold" id="prenom2" name="prenom2" value="<?= $user['prenom2'] ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="sexe2" class="form-label">Sexe</label>
                     <div class="d-flex">
                         <div class="form-check me-4">
-                            <input class="form-check-input" type="radio" name="sexe2" id="sexe2_1" value="F" <?= $user['sexe_relayeur_2'] == 'F' ? 'checked' : '' ?> required>
+                            <input class="form-check-input" type="radio" name="sexe2" id="sexe2_1" value="F" <?= $user['sexe2'] == 'F' ? 'checked' : '' ?> required>
                             <label class="form-check-label fw-bold" for="sexe2_1">F</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sexe2" id="sexe2_2" value="M" <?= $user['sexe_relayeur_2'] == 'M' ? 'checked' : '' ?> required>
+                            <input class="form-check-input" type="radio" name="sexe2" id="sexe2_2" value="M" <?= $user['sexe2'] == 'M' ? 'checked' : '' ?> required>
                             <label class="form-check-label fw-bold" for="sexe2_2">M</label>
                         </div>
                     </div>
@@ -163,19 +174,19 @@
                     <label for="t-shirt2" class="form-label">Taille de t-shirt</label>
                     <select class="form-select fw-bold" aria-label="Taille de t-shirt" name="t-shirt2" required>
                         <option>Sélectionnez une taille de t-shirt</option>
-                        <option value="S" <?= $user['tshirt_relayeur_2'] == 'S' ? 'selected' : '' ?>>S</option>
-                        <option value="M" <?= $user['tshirt_relayeur_2'] == 'M' ? 'selected' : '' ?>>M</option>
-                        <option value="L" <?= $user['tshirt_relayeur_2'] == 'L' ? 'selected' : '' ?>>L</option>
-                        <option value="XL" <?= $user['tshirt_relayeur_2'] == 'XL' ? 'selected' : '' ?>>XL</option>
+                        <option value="S" <?= $user['t-shirt2'] == 'S' ? 'selected' : '' ?>>S</option>
+                        <option value="M" <?= $user['t-shirt2'] == 'M' ? 'selected' : '' ?>>M</option>
+                        <option value="L" <?= $user['t-shirt2'] == 'L' ? 'selected' : '' ?>>L</option>
+                        <option value="XL" <?= $user['t-shirt2'] == 'XL' ? 'selected' : '' ?>>XL</option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="annee_naissance2" class="form-label">Année de naissance</label>
-                    <input type="tel" maxlength="4" class="form-control fw-bold" id="annee_naissance2" name="annee_naissance2" value="<?= $user['annee_naissance_2'] ?>" required>
+                    <input type="tel" maxlength="4" class="form-control fw-bold" id="annee_naissance2" name="annee_naissance2" value="<?= $user['annee_naissance2'] ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="email2" class="form-label">Email</label>
-                    <input type="email" class="form-control fw-bold" id="email2" name="email2" value="<?= $user['email_relayeur_2'] ?>" required>
+                    <input type="email" class="form-control fw-bold" id="email2" name="email2" value="<?= $user['email2'] ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="tel2" class="form-label">Téléphone</label>
@@ -185,11 +196,11 @@
                     <label for="licence2" class="form-label">Type de licence</label>
                     <div class="d-flex">
                         <div class="form-check me-4">
-                            <input class="form-check-input" type="radio" name="licence2" id="licence2_1" value="FFTri" <?= $user['type_licence_relayeur_2'] == 'FFTri' ? 'checked' : '' ?> required>
+                            <input class="form-check-input" type="radio" name="licence2" id="licence2_1" value="FFTri" <?= $user['licence2'] == 'FFTri' ? 'checked' : '' ?> required>
                             <label class="form-check-label fw-bold" for="licence2_1">FFTri</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="licence2" id="licence2_2" value="NON-LICENCIE" <?= $user['type_licence_relayeur_2'] == 'NON-LICENCIE' ? 'checked' : '' ?> required>
+                            <input class="form-check-input" type="radio" name="licence2" id="licence2_2" value="NON-LICENCIE" <?= $user['licence2'] == 'NON-LICENCIE' ? 'checked' : '' ?> required>
                             <label class="form-check-label fw-bold" for="licence2_2">NON-LICENCIE</label>
                         </div>
                     </div>
@@ -197,11 +208,11 @@
                 <div id="num_licence2_div">
                     <div class="mb-3">
                         <label for="num_licence2" class="form-label">Numéro de licence</label>
-                        <input type="text" class="form-control fw-bold" id="num_licence2" name="num_licence2" value="<?= $user['numero_licence_relayeur_2'] ?>">
+                        <input type="text" class="form-control fw-bold" id="num_licence2" name="num_licence2" value="<?= $user['num_licence2'] ?>">
                     </div>
                     <div class="mb-3">
                         <label for="club2" class="form-label">Nom du club</label>
-                        <input type="text" class="form-control fw-bold" id="club2" name="club2" value="<?= $user['club_relayeur_2'] ?>">
+                        <input type="text" class="form-control fw-bold" id="club2" name="club2" value="<?= $user['club2'] ?>">
                     </div>
                 </div>
                 <div id="certif2_div" class="mb-3">
@@ -227,6 +238,6 @@
 
 <script src="functions/script.js"></script>
 <script>
-    form_controller(radios1, licence1, certif1, "<?= $user['type_licence_relayeur_1'] ?>");
-    form_controller(radios2, licence2, certif2, "<?= $user['type_licence_relayeur_2'] ?>");
+    form_controller(radios1, licence1, certif1, "<?= $user['licence1'] ?>");
+    form_controller(radios2, licence2, certif2, "<?= $user['licence2'] ?>");
 </script>

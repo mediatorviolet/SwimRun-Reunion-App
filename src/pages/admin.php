@@ -1,10 +1,14 @@
-<?php include 'functions/logout.php' ?>
-<?php include 'functions/admin_functions.php' ?>
 <?php
+require('functions/auth.php');
+if (!Auth::isLogged()) {
+    header('Location: index.php?page=connexion');
+}
+
+include 'functions/logout.php';
+include 'functions/admin_functions.php';
 connexion_bdd();
 valider();
-?>
-<?php
+
 function badge_count($etat)
 {
     try { // Connexion à la BDD

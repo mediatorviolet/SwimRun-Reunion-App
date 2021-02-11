@@ -30,7 +30,7 @@
     border-color: #242424 !important;
 }
 
-.card-header, .modal-header {
+.card-header, .modal-header, .alert-danger, .alert-danger span {
     background-color: #ff1744 !important;
     color: #fff !important;
 }

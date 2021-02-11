@@ -83,7 +83,7 @@ function envoi_form()
     }
 
     $req->execute(array(
-        'id_team' => $_SESSION['user']['id'],
+        'id_team' => $_SESSION['auth']['id'],
         'nom1' => $_POST['nom1'],
         'prenom1' => $_POST['prenom1'],
         'sexe1' => $_POST['sexe1'],
@@ -142,7 +142,7 @@ function verif_team()
     }
 
     // On cherche si $_SESSION['user']['id'] correspond à un id_team dans la table en_attente
-    $req = $bdd->query('SELECT EXISTS ( SELECT id_team FROM en_attente WHERE id_team = ' . $_SESSION['user']['id'] . ') AS team_exists');
+    $req = $bdd->query('SELECT EXISTS ( SELECT id_team FROM en_attente WHERE id_team = ' . $_SESSION['auth']['id'] . ') AS team_exists');
 
     $duplicate = $req->fetch();
     if ($duplicate['team_exists']) {
