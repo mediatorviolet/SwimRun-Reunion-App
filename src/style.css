@@ -48,7 +48,7 @@
     border-color: #fff !important;
 }
 
-footer {
+footer, nav {
     background-color: #242424;
 }
 
@@ -59,4 +59,38 @@ footer div {
 .fa-github {
     color: #fff;
     font-size: 2rem;
+}
+
+.divider {
+    background: transparent url('../resources/img/divider_dark.png');
+    height: 6px;
+    width: 82px;
+    margin-bottom: 2rem;
+}
+
+.shape1 {
+    background: transparent url('../resources/img/element_01.png') no-repeat center center;
+}
+
+b {
+    font-weight: 800;
+}
+
+h3, h3 b, h3 span {
+    color: #ff1744;
+}
+
+h3 span {
+    font-size: medium;
+}
+
+.form-check-input:focus {
+    border-color: #ff1744;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgba(255, 23, 68, .5);
+}
+
+.form-check-input:checked {
+    background-color: #ff1744 !important;
+    border-color: #ff1744 !important;
 }

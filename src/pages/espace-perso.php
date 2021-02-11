@@ -36,50 +36,58 @@
     }
     ?>
     <div class="row mb-4">
-        <div class="col-sm-4 mx-auto">
-            <p>
-                Vous êtes inscrit à : <?= $user['rsfp_product'] ?>
-            </p>
-            <p>
-                Nom d'équipe : <?= $user['team'] ?>
-            </p>
-            <p>
-                Catégorie : <span id="categorie"></span>
-            </p>
-            <p>
-                Responsable d'équipe : <span id="respo_equipe"></span>
-            </p>
+        <div class="col-sm-4 mx-auto d-flex align-items-center">
+            <div>
+                <p>
+                    Vous êtes inscrit à : <b><?= $user['rsfp_product'] ?></b>
+                </p>
+                <p>
+                    Nom d'équipe : <b><?= $user['team'] ?></b>
+                </p>
+                <p>
+                    Catégorie : <span id="categorie" class="fw-bold"></span>
+                </p>
+                <p>
+                    Responsable d'équipe : <span id="respo_equipe" class="fw-bold"></span>
+                </p>
+            <div class="divider"></div>
+            </div>
         </div>
-        <div class="col-sm-4 mx-auto"></div>
+        <div class="col-sm-4 mx-auto d-flex justify-content-center">
+            <div class="shape1">
+                <img src="../resources/img/LOGO SWIMRUN SEUL.png" alt="logo swimrun" class="img-fluid">
+            </div>
+        </div>
     </div>
     <form action="<?= validation_form() ?>" method="POST" enctype="multipart/form-data">
         <div class="row">
             <div class="col-sm-4 mx-auto">
-                <h3 class="mb-3">Coureur 1 (responsable d'équipe) :</h3>
+                <h3 class="mb-3"><b>COUREUR 1</b> <span>(responsable d'équipe)</span></h3>
+                <div class="divider"></div>
                 <div class="mb-3">
                     <label for="nom1" class="form-label">Nom</label>
-                    <input type="text" class="form-control" id="nom1" name="nom1" value="<?= $user['nom_relayeur_1'] ?>" required>
+                    <input type="text" class="form-control fw-bold" id="nom1" name="nom1" value="<?= $user['nom_relayeur_1'] ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="prenom1" class="form-label">Prénom</label>
-                    <input type="text" class="form-control" id="prenom1" name="prenom1" value="<?= $user['prenom_relayeur_1'] ?>" required>
+                    <input type="text" class="form-control fw-bold" id="prenom1" name="prenom1" value="<?= $user['prenom_relayeur_1'] ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="sexe1" class="form-label">Sexe</label>
                     <div class="d-flex">
                         <div class="form-check me-4">
                             <input class="form-check-input" type="radio" name="sexe1" id="sexe1_1" value="F" <?= $user['sexe_relayeur_1'] == 'F' ? 'checked' : '' ?> required>
-                            <label class="form-check-label" for="sexe1_1">F</label>
+                            <label class="form-check-label fw-bold" for="sexe1_1">F</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="sexe1" id="sexe1_2" value="M" <?= $user['sexe_relayeur_1'] == 'M' ? 'checked' : '' ?> required>
-                            <label class="form-check-label" for="sexe1_2">M</label>
+                            <label class="form-check-label fw-bold" for="sexe1_2">M</label>
                         </div>
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="t-shirt1" class="form-label">Taille de t-shirt</label>
-                    <select class="form-select" aria-label="Taille de t-shirt" name="t-shirt1" required>
+                    <select class="form-select fw-bold" aria-label="Taille de t-shirt" name="t-shirt1" required>
                         <option>Sélectionnez une taille de t-shirt</option>
                         <option value="S" <?= $user['tshirt_relayeur_1'] == 'S' ? 'selected' : '' ?>>S</option>
                         <option value="M" <?= $user['tshirt_relayeur_1'] == 'M' ? 'selected' : '' ?>>M</option>
@@ -89,70 +97,71 @@
                 </div>
                 <div class="mb-3">
                     <label for="annee_naissance1" class="form-label">Année de naissance</label>
-                    <input type="tel" maxlength="4" class="form-control" id="annee_naissance1" name="annee_naissance1" value="<?= $user['annee_naissance_1'] ?>" required>
+                    <input type="tel" maxlength="4" class="form-control fw-bold" id="annee_naissance1" name="annee_naissance1" value="<?= $user['annee_naissance_1'] ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="email1" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email1" name="email1" value="<?= $user['email_relayeur_1'] ?>" required>
+                    <input type="email" class="form-control fw-bold" id="email1" name="email1" value="<?= $user['email_relayeur_1'] ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="tel1" class="form-label">Téléphone</label>
-                    <input type="tel" class="form-control" id="tel1" name="tel1" value="<?= $user['tel1'] ? '0' . $user['tel1'] : '' ?>" required>
+                    <input type="tel" class="form-control fw-bold" id="tel1" name="tel1" value="<?= $user['tel1'] ? '0' . $user['tel1'] : '' ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="licence1" class="form-label">Type de licence</label>
                     <div class="d-flex">
                         <div class="form-check me-4">
                             <input class="form-check-input" type="radio" name="licence1" id="licence1_1" value="FFTri" <?= $user['type_licence_relayeur_1'] == 'FFTri' ? 'checked' : '' ?> required>
-                            <label class="form-check-label" for="licence1_1">FFTri</label>
+                            <label class="form-check-label fw-bold" for="licence1_1">FFTri</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="licence1" id="licence1_2" value="NON-LICENCIE" <?= $user['type_licence_relayeur_1'] == 'NON-LICENCIE' ? 'checked' : '' ?> required>
-                            <label class="form-check-label" for="licence1_2">NON-LICENCIE</label>
+                            <label class="form-check-label fw-bold" for="licence1_2">NON-LICENCIE</label>
                         </div>
                     </div>
                 </div>
                 <div id="num_licence1_div">
                     <div class="mb-3">
                         <label for="num_licence1" class="form-label">Numéro de licence</label>
-                        <input type="text" class="form-control" id="num_licence1" name="num_licence1" value="<?= $user['numero_licence_relayeur_1'] ?>">
+                        <input type="text" class="form-control fw-bold" id="num_licence1" name="num_licence1" value="<?= $user['numero_licence_relayeur_1'] ?>">
                     </div>
                     <div class="mb-3">
                         <label for="club1" class="form-label">Nom du club</label>
-                        <input type="text" class="form-control" id="club1" name="club1" value="<?= $user['club_relayeur_1'] ?>">
+                        <input type="text" class="form-control fw-bold" id="club1" name="club1" value="<?= $user['club_relayeur_1'] ?>">
                     </div>
                 </div>
                 <div id="certif1_div" class="mb-3">
                     <label for="certif1" class="form-label">Certificat médical</label>
-                    <input class="form-control" type="file" id="certif1" name="certif1">
+                    <input class="form-control fw-bold" type="file" id="certif1" name="certif1">
                 </div>
             </div>
             <div class="col-sm-4 mx-auto mt-md-0 mt-4">
-                <h3 class="mb-3">Coureur 2 :</h3>
+                <h3 class="mb-3"><b>COUREUR 2</b></h3>
+                <div class="divider"></div>
                 <div class="mb-3">
                     <label for="nom2" class="form-label">Nom</label>
-                    <input type="text" class="form-control" id="nom2" name="nom2" value="<?= $user['nom_relayeur_2'] ?>" required>
+                    <input type="text" class="form-control fw-bold" id="nom2" name="nom2" value="<?= $user['nom_relayeur_2'] ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="prenom2" class="form-label">Prénom</label>
-                    <input type="text" class="form-control" id="prenom2" name="prenom2" value="<?= $user['prenom_relayeur_2'] ?>" required>
+                    <input type="text" class="form-control fw-bold" id="prenom2" name="prenom2" value="<?= $user['prenom_relayeur_2'] ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="sexe2" class="form-label">Sexe</label>
                     <div class="d-flex">
                         <div class="form-check me-4">
                             <input class="form-check-input" type="radio" name="sexe2" id="sexe2_1" value="F" <?= $user['sexe_relayeur_2'] == 'F' ? 'checked' : '' ?> required>
-                            <label class="form-check-label" for="sexe2_1">F</label>
+                            <label class="form-check-label fw-bold" for="sexe2_1">F</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="sexe2" id="sexe2_2" value="M" <?= $user['sexe_relayeur_2'] == 'M' ? 'checked' : '' ?> required>
-                            <label class="form-check-label" for="sexe2_2">M</label>
+                            <label class="form-check-label fw-bold" for="sexe2_2">M</label>
                         </div>
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="t-shirt2" class="form-label">Taille de t-shirt</label>
-                    <select class="form-select" aria-label="Taille de t-shirt" name="t-shirt2" required>
+                    <select class="form-select fw-bold" aria-label="Taille de t-shirt" name="t-shirt2" required>
                         <option>Sélectionnez une taille de t-shirt</option>
                         <option value="S" <?= $user['tshirt_relayeur_2'] == 'S' ? 'selected' : '' ?>>S</option>
                         <option value="M" <?= $user['tshirt_relayeur_2'] == 'M' ? 'selected' : '' ?>>M</option>
@@ -162,42 +171,42 @@
                 </div>
                 <div class="mb-3">
                     <label for="annee_naissance2" class="form-label">Année de naissance</label>
-                    <input type="tel" maxlength="4" class="form-control" id="annee_naissance2" name="annee_naissance2" value="<?= $user['annee_naissance_2'] ?>" required>
+                    <input type="tel" maxlength="4" class="form-control fw-bold" id="annee_naissance2" name="annee_naissance2" value="<?= $user['annee_naissance_2'] ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="email2" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email2" name="email2" value="<?= $user['email_relayeur_2'] ?>" required>
+                    <input type="email" class="form-control fw-bold" id="email2" name="email2" value="<?= $user['email_relayeur_2'] ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="tel2" class="form-label">Téléphone</label>
-                    <input type="tel" class="form-control" id="tel2" name="tel2" value="<?= $user['tel2'] ? '0' . $user['tel2'] : '' ?>" required>
+                    <input type="tel" class="form-control fw-bold" id="tel2" name="tel2" value="<?= $user['tel2'] ? '0' . $user['tel2'] : '' ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="licence2" class="form-label">Type de licence</label>
                     <div class="d-flex">
                         <div class="form-check me-4">
                             <input class="form-check-input" type="radio" name="licence2" id="licence2_1" value="FFTri" <?= $user['type_licence_relayeur_2'] == 'FFTri' ? 'checked' : '' ?> required>
-                            <label class="form-check-label" for="licence2_1">FFTri</label>
+                            <label class="form-check-label fw-bold" for="licence2_1">FFTri</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="licence2" id="licence2_2" value="NON-LICENCIE" <?= $user['type_licence_relayeur_2'] == 'NON-LICENCIE' ? 'checked' : '' ?> required>
-                            <label class="form-check-label" for="licence2_2">NON-LICENCIE</label>
+                            <label class="form-check-label fw-bold" for="licence2_2">NON-LICENCIE</label>
                         </div>
                     </div>
                 </div>
                 <div id="num_licence2_div">
                     <div class="mb-3">
                         <label for="num_licence2" class="form-label">Numéro de licence</label>
-                        <input type="text" class="form-control" id="num_licence2" name="num_licence2" value="<?= $user['numero_licence_relayeur_2'] ?>">
+                        <input type="text" class="form-control fw-bold" id="num_licence2" name="num_licence2" value="<?= $user['numero_licence_relayeur_2'] ?>">
                     </div>
                     <div class="mb-3">
                         <label for="club2" class="form-label">Nom du club</label>
-                        <input type="text" class="form-control" id="club2" name="club2" value="<?= $user['club_relayeur_2'] ?>">
+                        <input type="text" class="form-control fw-bold" id="club2" name="club2" value="<?= $user['club_relayeur_2'] ?>">
                     </div>
                 </div>
                 <div id="certif2_div" class="mb-3">
                     <label for="certif2" class="form-label">Certificat médical</label>
-                    <input class="form-control" type="file" id="certif2" name="certif2">
+                    <input class="form-control fw-bold" type="file" id="certif2" name="certif2">
                 </div>
             </div>
         </div>
