@@ -79,102 +79,102 @@ function badge_count($etat)
             while ($donnees = $req->fetch()) { ?>
 
                 <div class="table-responsive mb-5 mx-lg-4">
-                    <table class="table table-hover table-bordered border-dark shadow">
-                        <thead>
-                            <tr>
-                                <th scope="col"><?= substr($donnees['rsfp_product'], 20) . ' | ' . $donnees['team'] . ' | N° ' . $donnees['id_team'] ?></th>
-                                <th scope="col">Coureur 1</th>
-                                <th scope="col">Coureur 2</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">Nom</th>
-                                <?php
-                                highlight_change($donnees['nom_relayeur_1'], html_entity_decode($donnees['nom1']));
-                                highlight_change($donnees['nom_relayeur_2'], html_entity_decode($donnees['nom2']));
-                                ?>
-                            </tr>
-                            <tr>
-                                <th scope="row">Prénom</th>
-                                <?php
-                                highlight_change($donnees['prenom_relayeur_1'], html_entity_decode($donnees['prenom1']));
-                                highlight_change($donnees['prenom_relayeur_2'], html_entity_decode($donnees['prenom2']));
-                                ?>
-                            </tr>
-                            <tr>
-                                <th scope="row">Sexe</th>
-                                <?php
-                                highlight_change($donnees['sexe_relayeur_1'], $donnees['sexe1']);
-                                highlight_change($donnees['sexe_relayeur_2'], $donnees['sexe2']);
-                                ?>
-                            </tr>
-                            <tr>
-                                <th scope="row">Taille de t-shirt</th>
-                                <?php
-                                highlight_change($donnees['tshirt_relayeur_1'], $donnees['tshirt1']);
-                                highlight_change($donnees['tshirt_relayeur_2'], $donnees['tshirt2']);
-                                ?>
-                            </tr>
-                            <tr>
-                                <th scope="row">Année de naissance</th>
-                                <?php
-                                highlight_change($donnees['annee_naissance_1'], $donnees['annee_naissance1']);
-                                highlight_change($donnees['annee_naissance_2'], $donnees['annee_naissance2']);
-                                ?>
-                            </tr>
-                            <tr>
-                                <th scope="row">Email</th>
-                                <?php
-                                highlight_change($donnees['email_relayeur_1'], html_entity_decode($donnees['email1']));
-                                highlight_change($donnees['email_relayeur_2'], html_entity_decode($donnees['email2']));
-                                ?>
-                            </tr>
-                            <tr>
-                                <th scope="row">Téléphone</th>
-                                <?php
-                                highlight_change($donnees['tel1'], $donnees['telephone1']);
-                                highlight_change($donnees['tel2'], $donnees['telephone2']);
-                                ?>
-                            </tr>
-                            <tr>
-                                <th scope="row">Type de licence</th>
-                                <?php
-                                highlight_change($donnees['type_licence_relayeur_1'], $donnees['licence_1']);
-                                highlight_change($donnees['type_licence_relayeur_2'], $donnees['licence_2']);
-                                ?>
-                            </tr>
-                            <tr>
-                                <th scope="row">Numéro de licence</th>
-                                <?php
-                                highlight_change($donnees['numero_licence_relayeur_1'], $donnees['numero_licence_1']);
-                                highlight_change($donnees['numero_licence_relayeur_2'], $donnees['numero_licence_2']);
-                                ?>
-                            </tr>
-                            <tr>
-                                <th scope="row">Nom du club</th>
-                                <?php
-                                highlight_change($donnees['club_relayeur_1'], html_entity_decode($donnees['club1']));
-                                highlight_change($donnees['club_relayeur_2'], html_entity_decode($donnees['club2']));
-                                ?>
-                            </tr>
-                            <tr>
-                                <th scope="row">Certificat médical</th>
-                                <?=
-                                !empty($donnees['certificat1']) ? '<td class="table-warning"><a href="' . $donnees['certificat1'] . '" target="_blank">Voir le certificat</a></td>' : '<td></td>';
-                                ?>
-                                <?=
-                                !empty($donnees['certificat2']) ? '<td class="table-warning"><a href="' . $donnees['certificat2'] . '" target="_blank">Voir le certificat</a></td>' : '<td></td>';
-                                ?>
-                            </tr>
-                        </tbody>
-                    </table>
                     <form action="<?= valider() ?>" method="post">
+                        <table class="table table-hover table-bordered border-dark shadow">
+                            <thead>
+                                <tr>
+                                    <th scope="col"><?= substr($donnees['rsfp_product'], 20) . ' | ' . $donnees['team'] . ' | N° ' . $donnees['id_team'] ?></th>
+                                    <th scope="col">Coureur 1</th>
+                                    <th scope="col">Coureur 2</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Nom</th>
+                                    <?php
+                                    highlight_change($donnees, "nom_relayeur_1", "nom1");
+                                    highlight_change($donnees, "nom_relayeur_2", "nom2");
+                                    ?>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Prénom</th>
+                                    <?php
+                                    highlight_change($donnees, "prenom_relayeur_1", "prenom1");
+                                    highlight_change($donnees, "prenom_relayeur_2", "prenom2");
+                                    ?>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Sexe</th>
+                                    <?php
+                                    highlight_change($donnees, "sexe_relayeur_1", "sexe1");
+                                    highlight_change($donnees, "sexe_relayeur_2", "sexe2");
+                                    ?>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Taille de t-shirt</th>
+                                    <?php
+                                    highlight_change($donnees, "tshirt_relayeur_1", "tshirt1");
+                                    highlight_change($donnees, "tshirt_relayeur_2", "tshirt2");
+                                    ?>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Année de naissance</th>
+                                    <?php
+                                    highlight_change($donnees, "annee_naissance_1", "annee_naissance1");
+                                    highlight_change($donnees, "annee_naissance_2", "annee_naissance2");
+                                    ?>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Email</th>
+                                    <?php
+                                    highlight_change($donnees, "email_relayeur_1", "email1");
+                                    highlight_change($donnees, "email_relayeur_2", "email2");
+                                    ?>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Téléphone</th>
+                                    <?php
+                                    highlight_change($donnees, "tel1", "telephone1");
+                                    highlight_change($donnees, "tel2", "telephone2");
+                                    ?>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Type de licence</th>
+                                    <?php
+                                    highlight_change($donnees, "type_licence_relayeur_1", "licence_1");
+                                    highlight_change($donnees, "type_licence_relayeur_2", "licence_2");
+                                    ?>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Numéro de licence</th>
+                                    <?php
+                                    highlight_change($donnees, "numero_licence_relayeur_1", "numero_licence_1");
+                                    highlight_change($donnees, "numero_licence_relayeur_2", "numero_licence_2");
+                                    ?>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Nom du club</th>
+                                    <?php
+                                    highlight_change($donnees, "club_relayeur_1", "club1");
+                                    highlight_change($donnees, "club_relayeur_2", "club2");
+                                    ?>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Certificat médical</th>
+                                    <?=
+                                    !empty($donnees['certificat1']) ? '<td class="table-warning"><a href="' . $donnees['certificat1'] . '" target="_blank">Voir le certificat</a></td>' : '<td></td>';
+                                    ?>
+                                    <?=
+                                    !empty($donnees['certificat2']) ? '<td class="table-warning"><a href="' . $donnees['certificat2'] . '" target="_blank">Voir le certificat</a></td>' : '<td></td>';
+                                    ?>
+                                </tr>
+                            </tbody>
+                        </table>
                         <input type="hidden" name="id_attente" value="<?= $donnees['id_attente'] ?>">
                         <button type="submit" name="valide" class="btn rounded-0 me-4">Valider</button>
 
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn rounded-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button type="button" class="btn rounded-0 me-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Ne pas valider
                         </button>
 
@@ -196,7 +196,6 @@ function badge_count($etat)
                                 </div>
                             </div>
                         </div>
-
                     </form>
                 </div>
             <?php
@@ -224,71 +223,71 @@ function badge_count($etat)
                             <tr>
                                 <th scope="row">Nom</th>
                                 <?php
-                                highlight_change($donnees['nom_relayeur_1'], html_entity_decode($donnees['nom1']));
-                                highlight_change($donnees['nom_relayeur_2'], html_entity_decode($donnees['nom2']));
+                                highlight_change($donnees, "nom_relayeur_1", "nom1");
+                                highlight_change($donnees, "nom_relayeur_2", "nom2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Prénom</th>
                                 <?php
-                                highlight_change($donnees['prenom_relayeur_1'], html_entity_decode($donnees['prenom1']));
-                                highlight_change($donnees['prenom_relayeur_2'], html_entity_decode($donnees['prenom2']));
+                                highlight_change($donnees, "prenom_relayeur_1", "prenom1");
+                                highlight_change($donnees, "prenom_relayeur_2", "prenom2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Sexe</th>
                                 <?php
-                                highlight_change($donnees['sexe_relayeur_1'], $donnees['sexe1']);
-                                highlight_change($donnees['sexe_relayeur_2'], $donnees['sexe2']);
+                                highlight_change($donnees, "sexe_relayeur_1", "sexe1");
+                                highlight_change($donnees, "sexe_relayeur_2", "sexe2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Taille de t-shirt</th>
                                 <?php
-                                highlight_change($donnees['tshirt_relayeur_1'], $donnees['tshirt1']);
-                                highlight_change($donnees['tshirt_relayeur_2'], $donnees['tshirt2']);
+                                highlight_change($donnees, "tshirt_relayeur_1", "tshirt1");
+                                highlight_change($donnees, "tshirt_relayeur_2", "tshirt2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Année de naissance</th>
                                 <?php
-                                highlight_change($donnees['annee_naissance_1'], $donnees['annee_naissance1']);
-                                highlight_change($donnees['annee_naissance_2'], $donnees['annee_naissance2']);
+                                highlight_change($donnees, "annee_naissance_1", "annee_naissance1");
+                                highlight_change($donnees, "annee_naissance_2", "annee_naissance2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Email</th>
                                 <?php
-                                highlight_change($donnees['email_relayeur_1'], html_entity_decode($donnees['email1']));
-                                highlight_change($donnees['email_relayeur_2'], html_entity_decode($donnees['email2']));
+                                highlight_change($donnees, "email_relayeur_1", "email1");
+                                highlight_change($donnees, "email_relayeur_2", "email2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Téléphone</th>
                                 <?php
-                                highlight_change($donnees['tel1'], $donnees['telephone1']);
-                                highlight_change($donnees['tel2'], $donnees['telephone2']);
+                                highlight_change($donnees, "tel1", "telephone1");
+                                highlight_change($donnees, "tel2", "telephone2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Type de licence</th>
                                 <?php
-                                highlight_change($donnees['type_licence_relayeur_1'], $donnees['licence_1']);
-                                highlight_change($donnees['type_licence_relayeur_2'], $donnees['licence_2']);
+                                highlight_change($donnees, "type_licence_relayeur_1", "licence_1");
+                                highlight_change($donnees, "type_licence_relayeur_2", "licence_2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Numéro de licence</th>
                                 <?php
-                                highlight_change($donnees['numero_licence_relayeur_1'], $donnees['numero_licence_1']);
-                                highlight_change($donnees['numero_licence_relayeur_2'], $donnees['numero_licence_2']);
+                                highlight_change($donnees, "numero_licence_relayeur_1", "numero_licence_1");
+                                highlight_change($donnees, "numero_licence_relayeur_2", "numero_licence_2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Nom du club</th>
                                 <?php
-                                highlight_change($donnees['club_relayeur_1'], html_entity_decode($donnees['club1']));
-                                highlight_change($donnees['club_relayeur_2'], html_entity_decode($donnees['club2']));
+                                highlight_change($donnees, "club_relayeur_1", "club1");
+                                highlight_change($donnees, "club_relayeur_2", "club2");
                                 ?>
                             </tr>
                             <tr>
@@ -328,71 +327,71 @@ function badge_count($etat)
                             <tr>
                                 <th scope="row">Nom</th>
                                 <?php
-                                highlight_change($donnees['nom_relayeur_1'], html_entity_decode($donnees['nom1']));
-                                highlight_change($donnees['nom_relayeur_2'], html_entity_decode($donnees['nom2']));
+                                highlight_change($donnees, "nom_relayeur_1", "nom1");
+                                highlight_change($donnees, "nom_relayeur_2", "nom2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Prénom</th>
                                 <?php
-                                highlight_change($donnees['prenom_relayeur_1'], html_entity_decode($donnees['prenom1']));
-                                highlight_change($donnees['prenom_relayeur_2'], html_entity_decode($donnees['prenom2']));
+                                highlight_change($donnees, "prenom_relayeur_1", "prenom1");
+                                highlight_change($donnees, "prenom_relayeur_2", "prenom2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Sexe</th>
                                 <?php
-                                highlight_change($donnees['sexe_relayeur_1'], $donnees['sexe1']);
-                                highlight_change($donnees['sexe_relayeur_2'], $donnees['sexe2']);
+                                highlight_change($donnees, "sexe_relayeur_1", "sexe1");
+                                highlight_change($donnees, "sexe_relayeur_2", "sexe2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Taille de t-shirt</th>
                                 <?php
-                                highlight_change($donnees['tshirt_relayeur_1'], $donnees['tshirt1']);
-                                highlight_change($donnees['tshirt_relayeur_2'], $donnees['tshirt2']);
+                                highlight_change($donnees, "tshirt_relayeur_1", "tshirt1");
+                                highlight_change($donnees, "tshirt_relayeur_2", "tshirt2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Année de naissance</th>
                                 <?php
-                                highlight_change($donnees['annee_naissance_1'], $donnees['annee_naissance1']);
-                                highlight_change($donnees['annee_naissance_2'], $donnees['annee_naissance2']);
+                                highlight_change($donnees, "annee_naissance_1", "annee_naissance1");
+                                highlight_change($donnees, "annee_naissance_2", "annee_naissance2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Email</th>
                                 <?php
-                                highlight_change($donnees['email_relayeur_1'], html_entity_decode($donnees['email1']));
-                                highlight_change($donnees['email_relayeur_2'], html_entity_decode($donnees['email2']));
+                                highlight_change($donnees, "email_relayeur_1", "email1");
+                                highlight_change($donnees, "email_relayeur_2", "email2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Téléphone</th>
                                 <?php
-                                highlight_change($donnees['tel1'], $donnees['telephone1']);
-                                highlight_change($donnees['tel2'], $donnees['telephone2']);
+                                highlight_change($donnees, "tel1", "telephone1");
+                                highlight_change($donnees, "tel2", "telephone2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Type de licence</th>
                                 <?php
-                                highlight_change($donnees['type_licence_relayeur_1'], $donnees['licence_1']);
-                                highlight_change($donnees['type_licence_relayeur_2'], $donnees['licence_2']);
+                                highlight_change($donnees, "type_licence_relayeur_1", "licence_1");
+                                highlight_change($donnees, "type_licence_relayeur_2", "licence_2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Numéro de licence</th>
                                 <?php
-                                highlight_change($donnees['numero_licence_relayeur_1'], $donnees['numero_licence_1']);
-                                highlight_change($donnees['numero_licence_relayeur_2'], $donnees['numero_licence_2']);
+                                highlight_change($donnees, "numero_licence_relayeur_1", "numero_licence_1");
+                                highlight_change($donnees, "numero_licence_relayeur_2", "numero_licence_2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Nom du club</th>
                                 <?php
-                                highlight_change($donnees['club_relayeur_1'], html_entity_decode($donnees['club1']));
-                                highlight_change($donnees['club_relayeur_2'], html_entity_decode($donnees['club2']));
+                                highlight_change($donnees, "club_relayeur_1", "club1");
+                                highlight_change($donnees, "club_relayeur_2", "club2");
                                 ?>
                             </tr>
                             <tr>

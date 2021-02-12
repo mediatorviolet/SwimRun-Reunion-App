@@ -54,7 +54,7 @@ $bool;
 function valider()
 {
     global $bool;
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' and (isset($_POST['valide']) or isset($_POST['non-valide']))) {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' and (isset($_POST['valide']) or isset($_POST['non-valide']) or isset($_POST['modifier']))) {
         try { // Connexion à la BDD
             $bdd = new PDO('mysql:host=127.0.0.1;dbname=swimrun-app;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         } catch (Exception $e) { // Si erreur, on renvoi un message d'erreur
@@ -71,9 +71,11 @@ function valider()
             // Ligne à décommenter pour envoyer le mail
             // send_mail($to, 'Modifications validées', $template, $p1, $p2, '', '', '');
             $req->closeCursor();
-            if (send_mail($to, 'Modifications validées', $template, $p1, $p2, '', '', '') == true) {
-            }
-            $bdd->exec('UPDATE en_attente SET etat = \'valide\' WHERE id_attente = "' . $_POST['id_attente'] . '"');
+            // if (send_mail($to, 'Modifications validées', $template, $p1, $p2, '', '', '') == true) {
+            // }
+            extract($_POST);
+            $sql = "UPDATE en_attente SET nom1 = '$nom1', prenom1 = '$prenom1', sexe1 = '$sexe1', tshirt1 = '$tshirt1', annee_naissance1 = '$annee_naissance1', email1 = '$email1', telephone1 = '$telephone1', licence_1 = '$licence_1', numero_licence_1 = '$numero_licence_1', club1 = '$club1', nom2 = '$nom2', prenom2 = '$prenom2', sexe2 = '$sexe2', tshirt2 = '$tshirt2', annee_naissance2 = '$annee_naissance2', email2 = '$email2', telephone2 = '$telephone2', licence_2 = '$licence_2', numero_licence_2 = '$numero_licence_2', club2 = '$club2', etat = 'valide' WHERE id_attente = '" . $_POST['id_attente'] . "'";
+            $bdd->exec($sql);
             $bool = true;
         }
 
@@ -91,9 +93,11 @@ function valider()
                 // Ligne à décommenter pour envoyer le mail
                 // send_mail($to, 'Modifications non validées', $template, $p1, $p2, $motif, $team, $code);
                 $req->closeCursor();
-                if (send_mail($to, 'Modifications non validées', $template, $p1, $p2, $motif, $team, $code) == true) {
-                }
-                $bdd->exec('UPDATE en_attente SET etat = \'non_valide\' WHERE id_attente = "' . $_POST['id_attente'] . '"');
+                // if (send_mail($to, 'Modifications non validées', $template, $p1, $p2, $motif, $team, $code) == true) {
+                // }
+                extract($_POST);
+                $sql = "UPDATE en_attente SET nom1 = '$nom1', prenom1 = '$prenom1', sexe1 = '$sexe1', tshirt1 = '$tshirt1', annee_naissance1 = '$annee_naissance1', email1 = '$email1', telephone1 = '$telephone1', licence_1 = '$licence_1', numero_licence_1 = '$numero_licence_1', club1 = '$club1', nom2 = '$nom2', prenom2 = '$prenom2', sexe2 = '$sexe2', tshirt2 = '$tshirt2', annee_naissance2 = '$annee_naissance2', email2 = '$email2', telephone2 = '$telephone2', licence_2 = '$licence_2', numero_licence_2 = '$numero_licence_2', club2 = '$club2', etat = 'non-valide' WHERE id_attente = '" . $_POST['id_attente'] . "'";
+                $bdd->exec($sql);
                 $bool = false;
             }
         }
@@ -101,7 +105,7 @@ function valider()
 }
 
 // Fonction qui compare les valeurs de la table team avec celles de la table en_attente, si elles sont différentes, la case correspondante du tableau est colorée en jaune
-function highlight_change($t, $e)
+function highlight_change($a, $t, $e)
 {
-    echo $t != html_entity_decode($e) ? "<td class='table-warning'>" . $e . "</td>" : "<td>" . $e . "</td>";
+    echo $a["$t"] != html_entity_decode($a["$e"]) ? '<td class="table-warning"><input style="background-color: #fff3cd;" type="text" value="' . html_entity_decode($a["$e"]) . '" name= "' . $e . '"></td>' : '<td><input type="text" value="' . html_entity_decode($a["$e"]) . '" name="' . $e . '"></td>';
 }
