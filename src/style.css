@@ -30,7 +30,7 @@
     border-color: #242424 !important;
 }
 
-.card-header, .modal-header, .alert-danger, .alert-danger span {
+.card-header, .modal-header, .modal-header h5, .alert-danger, .alert-danger span {
     background-color: #ff1744 !important;
     color: #fff !important;
 }
@@ -93,4 +93,8 @@ h3 span {
 .form-check-input:checked {
     background-color: #ff1744 !important;
     border-color: #ff1744 !important;
+}
+
+td input {
+    border: none !important;
 }
