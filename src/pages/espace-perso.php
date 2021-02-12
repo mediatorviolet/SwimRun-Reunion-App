@@ -41,10 +41,6 @@ $user = $_SESSION['auth'];
             echo '</div>';
         }
     }
-    echo '<div class="alert alert-danger alert-dismissible fade show col-6 mx-auto mb-5 text-center fw-bold shadow" role="alert">';
-    echo '<span>Une erreur est survenue.</span>';
-    echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-    echo '</div>';
     ?>
     <div class="row mb-4">
         <div class="col-sm-4 mx-auto d-flex align-items-center">
