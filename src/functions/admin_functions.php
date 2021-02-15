@@ -13,6 +13,7 @@ function send_mail($to, $subject, $template, $p1, $p2, $motif, $team, $code)
     // On force l'encodage en UTF-8 pour ne pas avoir de problèmes d'affichage
     $mail->CharSet = 'UTF-8';
     $mail->Encoding = 'base64';
+    $mail->setLanguage('fr', './vendor/phpmailer/phpmailer/language/phpmailer.lang-fr.php');
 
 
     try {
