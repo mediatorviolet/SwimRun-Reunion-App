@@ -2,52 +2,70 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\OAuth;
+use League\OAuth2\Client\Porvider\Google;
 
 require 'C:\Users\Antoine\Documents\GitHub\SwimRun-Reunion-App\vendor\autoload.php';
 
 function send_mail($to, $subject, $template, $p1, $p2, $motif, $team, $code)
 {
-    // Instantiation and passing `true` enables exceptions
-    $mail = new PHPMailer(true);
-    // On force l'encodage en UTF-8 pour ne pas avoir de problèmes d'affichage
-    $mail->CharSet = 'UTF-8';
-    $mail->Encoding = 'base64';
-    $mail->setLanguage('fr', './vendor/phpmailer/phpmailer/language/phpmailer.lang-fr.php');
+    //Create a new PHPMailer instance
+    $mail = new PHPMailer();
 
+    $mail->isSMTP();
+    $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+    $mail->Host = 'smtp.gmail.com';
+    $mail->Port = 587;
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->SMTPAuth = 'XOAUTH2';
 
-    try {
-        //Server settings
-        // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
-        $mail->isSMTP();
-        $mail->Host       = 'mail.gmx.com';
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'emaileur@gmx.fr';
-        $mail->Password   = 'Pouetpouet123';
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = 587;
+    // Authentication details
+    $email = 'nthestripper@gmail.com';
+    $clientId = '471704535165-7g4ri2bkkf7t9mtgh5a4ph13l3j72see.apps.googleusercontent.com';
+    $clientSecret = 'h2-XTUdnxXGgNijNiUYa52YB';
+    $refreshToken = '1//03sTFsNZuMU_VCgYIARAAGAMSNwF-L9IreUhWV9sG0wHakr-BxYeE6PQ3brOdtWhNAUEmFpEr0gNhsEqufJo462xGApRlYGPLOgY';
 
-        //Recipients
-        $mail->setFrom('emaileur@gmx.fr', 'Swimrun Réunion');
-        $mail->addAddress($to);
+    $provider = new Google(
+        [
+            'clientId' => $clientId,
+            'clientSecret' => $clientSecret
+        ]
+    );
 
-        // Content
-        $message = file_get_contents("./templates/$template");
-        $message = str_replace('%prenom1%', $p1, $message);
-        $message = str_replace('%prenom2%', $p2, $message);
-        $message = str_replace('%motif%', $motif, $message);
-        $message = str_replace('%team%', $team, $message);
-        $message = str_replace('%code_invite%', $code, $message);
+    $mail->setOAuth(
+        new OAuth(
+            [
+                'provider' => $provider,
+                'clientId' => $clientId,
+                'clientSecret' => $clientSecret,
+                'refreshToken' => $refreshToken,
+                'userName' => $email
+            ]
+        )
+    );
 
-        $mail->Subject = $subject;
-        $mail->MsgHTML($message);
-        $mail->AltBody = strip_tags($message);
+    $mail->setFrom($email, 'Swimrun Réunion');
+    $mail->addAddress($to);
+    $mail->Subject = $subject;
 
-        $mail->send();
-        return true;
-    } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    // Content
+    $message = file_get_contents("./templates/$template");
+    $message = str_replace('%prenom1%', $p1, $message);
+    $message = str_replace('%prenom2%', $p2, $message);
+    $message = str_replace('%motif%', $motif, $message);
+    $message = str_replace('%team%', $team, $message);
+    $message = str_replace('%code_invite%', $code, $message);
+
+    $mail->Charset = PHPMailer::CHARSET_UTF8;
+    $mail->msgHTML($message);
+    $mail->AltBody = strip_tags($message);
+
+    if (!$mail->send()) {
+        echo 'Mailer Error: ' . $mail->ErrorInfo;
         return false;
+    } else {
+        echo 'Message sent!';
+        return true;
     }
 }
 

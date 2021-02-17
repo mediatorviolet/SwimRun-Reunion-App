@@ -58,7 +58,7 @@ if (!isset($_GET['code']) && !isset($_GET['provider'])) {
     exit;
 }
 
-require 'vendor/autoload.php';
+require 'C:\Users\Antoine\Documents\GitHub\SwimRun-Reunion-App\vendor\autoload.php';
 
 session_start();
 
@@ -76,12 +76,12 @@ if (!in_array($providerName, ['Google', 'Microsoft', 'Yahoo'])) {
 
 //These details are obtained by setting up an app in the Google developer console,
 //or whichever provider you're using.
-$clientId = 'RANDOMCHARS-----duv1n2.apps.googleusercontent.com';
-$clientSecret = 'RANDOMCHARS-----lGyjPcRtvP';
+$clientId = '471704535165-7g4ri2bkkf7t9mtgh5a4ph13l3j72see.apps.googleusercontent.com';
+$clientSecret = 'h2-XTUdnxXGgNijNiUYa52YB';
 
 //If this automatic URL doesn't work, set it yourself manually to the URL of this script
 $redirectUri = (isset($_SERVER['HTTPS']) ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
-//$redirectUri = 'http://localhost/PHPMailer/redirect';
+// $redirectUri = 'http://127.0.0.1:1111/edsa-SwimRun-Reunion-App/vendor/phpmailer/phpmailer/get_oauth_token.php';
 
 $params = [
     'clientId' => $clientId,
