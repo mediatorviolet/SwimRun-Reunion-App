@@ -96,8 +96,17 @@ function valider()
             $req->closeCursor();
             if (send_mail($to, 'Modifications validées', $template, $p1, $p2, '', '', '') == true) {
                 extract($_POST);
-                $sql = "UPDATE en_attente SET nom1 = '$nom1', prenom1 = '$prenom1', sexe1 = '$sexe1', tshirt1 = '$tshirt1', annee_naissance1 = '$annee_naissance1', email1 = '$email1', telephone1 = '$telephone1', licence_1 = '$licence_1', numero_licence_1 = '$numero_licence_1', club1 = '$club1', nom2 = '$nom2', prenom2 = '$prenom2', sexe2 = '$sexe2', tshirt2 = '$tshirt2', annee_naissance2 = '$annee_naissance2', email2 = '$email2', telephone2 = '$telephone2', licence_2 = '$licence_2', numero_licence_2 = '$numero_licence_2', club2 = '$club2', etat = 'valide' WHERE id_attente = '" . $_POST['id_attente'] . "'";
-                $bdd->exec($sql);
+                $sql_enAttente = "UPDATE en_attente SET nom1 = '$nom1', prenom1 = '$prenom1', sexe1 = '$sexe1', tshirt1 = '$tshirt1', annee_naissance1 = '$annee_naissance1', email1 = '$email1', telephone1 = '$telephone1', licence_1 = '$licence_1', numero_licence_1 = '$numero_licence_1', club1 = '$club1', nom2 = '$nom2', prenom2 = '$prenom2', sexe2 = '$sexe2', tshirt2 = '$tshirt2', annee_naissance2 = '$annee_naissance2', email2 = '$email2', telephone2 = '$telephone2', licence_2 = '$licence_2', numero_licence_2 = '$numero_licence_2', club2 = '$club2', etat = 'valide' WHERE id_attente = '" . $_POST['id_attente'] . "'";
+                $sql_final = "UPDATE final SET responsable_equipe = '$nom1 . $prenom1', telephone1 = '$telephone1', telephone2 = '$telephone2', email1 = '$email1', email2 = '$email2', nom1 = '$nom1', prenom1 = '$prenom1', sexe1 = '$sexe1', annee_naissance1 = '$annee_naissance1', licence_1 = '$licence_1', club1 = '$club1', numero_licence_1 = '$numero_licence_1', tshirt1 = '$tshirt1', nom2 = '$nom2', prenom2 = '$prenom2', sexe2 = '$sexe2', annee_naissance2 = '$annee_naissance2', licence_2 = '$licence_2', club2 = '$club2', numero_licence_2 = '$numero_licence_2', tshirt2 = '$tshirt2' WHERE id_attente = '" . $_POST['id_attente'] . "'";
+                $sql_updateCat = "UPDATE final SET categorie_equipe = CASE
+                    WHEN sexe1 = 'M' AND sexe2 = 'M' THEN 'HOMME'
+                    WHEN sexe1 = 'F' AND sexe2 = 'F' THEN 'FEMME'
+                    WHEN sexe1 = 'F' AND sexe2 = 'M' THEN 'MIXTE'
+                    WHEN sexe1 = 'M' AND sexe2 = 'F' THEN 'MIXTE'
+                    END";
+                $bdd->exec($sql_enAttente);
+                $bdd->exec($sql_final);
+                $bdd->exec($sql_updateCat);
                 $bool = true;
             }
         }
