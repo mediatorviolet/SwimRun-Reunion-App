@@ -22,13 +22,14 @@ function badge_count($etat)
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
     <div class="container-fluid">
-        <a class="navbar-brand fw-bold mx-lg-4" href="#">
+        <a class="navbar-brand fw-bold mx-lg-4" href="index.php?page=admin">
             Tableau de bord administrateur
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <a class="nav-link text-light" href="index.php?page=adminDashboard">Dashboard</a>
             <form action="<?= logout() ?>" method="post">
                 <button type="submit" name="deconnexion" id="btn_deco_admin" class="btn rounded-0 mx-lg-4 mt-lg-0 mt-4 h-100">
                     Déconnexion
@@ -419,7 +420,6 @@ function badge_count($etat)
 <footer class="text-center text-lg-start">
     <!-- Copyright -->
     <div class="text-center p-3">
-        © 2021 Copyright:
         <a class="nav-link" href="https://github.com/mediatorviolet" target="_blank"><i class="fab fa-github"></i></a>
     </div>
     <!-- Copyright -->
