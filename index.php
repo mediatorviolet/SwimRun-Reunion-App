@@ -6,7 +6,7 @@ session_start(); // Initialisation de la session
 // }
 ?>
 
-<?php include 'functions/connexion_bdd.php'; ?>
+<?php include 'src/functions/connexion_bdd.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +26,7 @@ session_start(); // Initialisation de la session
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <!-- Main CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="src/style/style.css">
 </head>
 
 <body>
@@ -39,9 +39,9 @@ session_start(); // Initialisation de la session
 
     if (isset($_GET['page']) and isset($page_ok[$_GET['page']])) {
         $page = $_GET['page'];
-        include 'pages/' . $page_ok[$page];
+        include 'src/pages/' . $page_ok[$page];
     } else {
-        include 'pages/login-page.php';
+        include 'src/pages/login-page.php';
     }
     ?>
 </body>

@@ -1,11 +1,11 @@
 <?php
-require('functions/auth.php');
+require('src/functions/auth.php');
 if (!Auth::isLogged()) {
     header('Location: index.php?page=connexion');
 }
 
-include 'functions/logout.php';
-include 'functions/admin_functions.php';
+include 'src/functions/logout.php';
+include 'src/functions/admin_functions.php';
 connexion_bdd();
 valider();
 
@@ -162,10 +162,10 @@ function badge_count($etat)
                                 <tr>
                                     <th scope="row">Certificat médical</th>
                                     <?=
-                                    !empty($donnees['certificat1']) ? '<td class="table-warning"><a href="' . $donnees['certificat1'] . '" target="_blank">Voir le certificat</a></td>' : '<td></td>';
+                                    !empty($donnees['certificat1']) ? '<td class="table-warning"><a href="src/' . $donnees['certificat1'] . '" target="_blank">Voir le certificat</a></td>' : '<td></td>';
                                     ?>
                                     <?=
-                                    !empty($donnees['certificat2']) ? '<td class="table-warning"><a href="' . $donnees['certificat2'] . '" target="_blank">Voir le certificat</a></td>' : '<td></td>';
+                                    !empty($donnees['certificat2']) ? '<td class="table-warning"><a href="src/' . $donnees['certificat2'] . '" target="_blank">Voir le certificat</a></td>' : '<td></td>';
                                     ?>
                                 </tr>
                             </tbody>
@@ -293,10 +293,10 @@ function badge_count($etat)
                             <tr>
                                 <th scope="row">Certificat médical</th>
                                 <?=
-                                !empty($donnees['certificat1']) ? '<td class="table-warning"><a href="' . $donnees['certificat1'] . '" target="_blank">Voir le certificat</a></td>' : '<td></td>';
+                                !empty($donnees['certificat1']) ? '<td class="table-warning"><a href="src/' . $donnees['certificat1'] . '" target="_blank">Voir le certificat</a></td>' : '<td></td>';
                                 ?>
                                 <?=
-                                !empty($donnees['certificat2']) ? '<td class="table-warning"><a href="' . $donnees['certificat2'] . '" target="_blank">Voir le certificat</a></td>' : '<td></td>';
+                                !empty($donnees['certificat2']) ? '<td class="table-warning"><a href="src/' . $donnees['certificat2'] . '" target="_blank">Voir le certificat</a></td>' : '<td></td>';
                                 ?>
                             </tr>
                         </tbody>
@@ -397,10 +397,10 @@ function badge_count($etat)
                             <tr>
                                 <th scope="row">Certificat médical</th>
                                 <?=
-                                !empty($donnees['certificat1']) ? '<td class="table-warning"><a href="' . $donnees['certificat1'] . '" target="_blank">Voir le certificat</a></td>' : '<td></td>';
+                                !empty($donnees['certificat1']) ? '<td class="table-warning"><a href="src/' . $donnees['certificat1'] . '" target="_blank">Voir le certificat</a></td>' : '<td></td>';
                                 ?>
                                 <?=
-                                !empty($donnees['certificat2']) ? '<td class="table-warning"><a href="' . $donnees['certificat2'] . '" target="_blank">Voir le certificat</a></td>' : '<td></td>';
+                                !empty($donnees['certificat2']) ? '<td class="table-warning"><a href="src/' . $donnees['certificat2'] . '" target="_blank">Voir le certificat</a></td>' : '<td></td>';
                                 ?>
                             </tr>
                         </tbody>

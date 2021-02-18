@@ -3,9 +3,9 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\OAuth;
-use League\OAuth2\Client\Porvider\Google;
+use League\OAuth2\Client\Provider\Google;
 
-require 'C:\Users\Antoine\Documents\GitHub\SwimRun-Reunion-App\vendor\autoload.php';
+require 'vendor/autoload.php';
 
 function send_mail($to, $subject, $template, $p1, $p2, $motif, $team, $code)
 {
@@ -13,17 +13,21 @@ function send_mail($to, $subject, $template, $p1, $p2, $motif, $team, $code)
     $mail = new PHPMailer();
 
     $mail->isSMTP();
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+    // SMTP::DEBUG_OFF = off (for production use)
+    // SMTP::DEBUG_CLIENT = client messages
+    // SMTP::DEBUG_SERVER = client and server messages
+    $mail->SMTPDebug = SMTP::DEBUG_OFF;
     $mail->Host = 'smtp.gmail.com';
     $mail->Port = 587;
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->SMTPAuth = 'XOAUTH2';
+    $mail->SMTPAuth = true;
+    $mail->AuthType = 'XOAUTH2';
 
     // Authentication details
     $email = 'nthestripper@gmail.com';
     $clientId = '471704535165-7g4ri2bkkf7t9mtgh5a4ph13l3j72see.apps.googleusercontent.com';
     $clientSecret = 'h2-XTUdnxXGgNijNiUYa52YB';
-    $refreshToken = '1//03sTFsNZuMU_VCgYIARAAGAMSNwF-L9IreUhWV9sG0wHakr-BxYeE6PQ3brOdtWhNAUEmFpEr0gNhsEqufJo462xGApRlYGPLOgY';
+    $refreshToken = '1//03toQBCYV1R9hCgYIARAAGAMSNwF-L9Ir4X8bPaHLmFm2XIS5p-1D5qLGQJzA423wxScX6TcMEhl1VnUuXSKDU1lrn7qdeXpmClM';
 
     $provider = new Google(
         [
@@ -49,7 +53,7 @@ function send_mail($to, $subject, $template, $p1, $p2, $motif, $team, $code)
     $mail->Subject = $subject;
 
     // Content
-    $message = file_get_contents("./templates/$template");
+    $message = file_get_contents("src/templates/$template");
     $message = str_replace('%prenom1%', $p1, $message);
     $message = str_replace('%prenom2%', $p2, $message);
     $message = str_replace('%motif%', $motif, $message);
@@ -90,12 +94,12 @@ function valider()
             // Ligne à décommenter pour envoyer le mail
             // send_mail($to, 'Modifications validées', $template, $p1, $p2, '', '', '');
             $req->closeCursor();
-            // if (send_mail($to, 'Modifications validées', $template, $p1, $p2, '', '', '') == true) {
-            // }
-            extract($_POST);
-            $sql = "UPDATE en_attente SET nom1 = '$nom1', prenom1 = '$prenom1', sexe1 = '$sexe1', tshirt1 = '$tshirt1', annee_naissance1 = '$annee_naissance1', email1 = '$email1', telephone1 = '$telephone1', licence_1 = '$licence_1', numero_licence_1 = '$numero_licence_1', club1 = '$club1', nom2 = '$nom2', prenom2 = '$prenom2', sexe2 = '$sexe2', tshirt2 = '$tshirt2', annee_naissance2 = '$annee_naissance2', email2 = '$email2', telephone2 = '$telephone2', licence_2 = '$licence_2', numero_licence_2 = '$numero_licence_2', club2 = '$club2', etat = 'valide' WHERE id_attente = '" . $_POST['id_attente'] . "'";
-            $bdd->exec($sql);
-            $bool = true;
+            if (send_mail($to, 'Modifications validées', $template, $p1, $p2, '', '', '') == true) {
+                extract($_POST);
+                $sql = "UPDATE en_attente SET nom1 = '$nom1', prenom1 = '$prenom1', sexe1 = '$sexe1', tshirt1 = '$tshirt1', annee_naissance1 = '$annee_naissance1', email1 = '$email1', telephone1 = '$telephone1', licence_1 = '$licence_1', numero_licence_1 = '$numero_licence_1', club1 = '$club1', nom2 = '$nom2', prenom2 = '$prenom2', sexe2 = '$sexe2', tshirt2 = '$tshirt2', annee_naissance2 = '$annee_naissance2', email2 = '$email2', telephone2 = '$telephone2', licence_2 = '$licence_2', numero_licence_2 = '$numero_licence_2', club2 = '$club2', etat = 'valide' WHERE id_attente = '" . $_POST['id_attente'] . "'";
+                $bdd->exec($sql);
+                $bool = true;
+            }
         }
 
         if (isset($_POST['non-valide'])) {
@@ -112,12 +116,12 @@ function valider()
                 // Ligne à décommenter pour envoyer le mail
                 // send_mail($to, 'Modifications non validées', $template, $p1, $p2, $motif, $team, $code);
                 $req->closeCursor();
-                // if (send_mail($to, 'Modifications non validées', $template, $p1, $p2, $motif, $team, $code) == true) {
-                // }
-                extract($_POST);
-                $sql = "UPDATE en_attente SET nom1 = '$nom1', prenom1 = '$prenom1', sexe1 = '$sexe1', tshirt1 = '$tshirt1', annee_naissance1 = '$annee_naissance1', email1 = '$email1', telephone1 = '$telephone1', licence_1 = '$licence_1', numero_licence_1 = '$numero_licence_1', club1 = '$club1', nom2 = '$nom2', prenom2 = '$prenom2', sexe2 = '$sexe2', tshirt2 = '$tshirt2', annee_naissance2 = '$annee_naissance2', email2 = '$email2', telephone2 = '$telephone2', licence_2 = '$licence_2', numero_licence_2 = '$numero_licence_2', club2 = '$club2', etat = 'non-valide' WHERE id_attente = '" . $_POST['id_attente'] . "'";
-                $bdd->exec($sql);
-                $bool = false;
+                if (send_mail($to, 'Modifications non validées', $template, $p1, $p2, $motif, $team, $code) == true) {
+                    extract($_POST);
+                    $sql = "UPDATE en_attente SET nom1 = '$nom1', prenom1 = '$prenom1', sexe1 = '$sexe1', tshirt1 = '$tshirt1', annee_naissance1 = '$annee_naissance1', email1 = '$email1', telephone1 = '$telephone1', licence_1 = '$licence_1', numero_licence_1 = '$numero_licence_1', club1 = '$club1', nom2 = '$nom2', prenom2 = '$prenom2', sexe2 = '$sexe2', tshirt2 = '$tshirt2', annee_naissance2 = '$annee_naissance2', email2 = '$email2', telephone2 = '$telephone2', licence_2 = '$licence_2', numero_licence_2 = '$numero_licence_2', club2 = '$club2', etat = 'non-valide' WHERE id_attente = '" . $_POST['id_attente'] . "'";
+                    $bdd->exec($sql);
+                    $bool = false;
+                }
             }
         }
     }

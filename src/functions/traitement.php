@@ -77,7 +77,7 @@ function envoi_form()
 
     // On fait appel à la fonction verif_team() pour savoir si on doit ajouter une ligne ou modifier une ligne déjà existante
     if (verif_team() == true) {
-        $req = $bdd->prepare('UPDATE en_attente SET id_team = :id_team, nom1 = :nom1, prenom1 = :prenom1, sexe1 = :sexe1, tshirt1 = :tshirt1, annee_naissance1 = :annee_naissance1, email1 = :email1, telephone1 = :telephone1, licence_1 = :licence_1, numero_licence_1 = :numero_licence_1, club1 = :club1, certificat1 = :certificat1, nom2 = :nom2, prenom2 = :prenom2, sexe2 = :sexe2, tshirt2 = :tshirt2, annee_naissance2 = :annee_naissance2, email2 = :email2, telephone2 = :telephone2, licence_2 = :licence_2, numero_licence_2 = :numero_licence_2, club2 = :club2, certificat2 = :certificat2, etat = :etat WHERE id_team = "' . $_SESSION['user']['id'] . '"');
+        $req = $bdd->prepare('UPDATE en_attente SET id_team = :id_team, nom1 = :nom1, prenom1 = :prenom1, sexe1 = :sexe1, tshirt1 = :tshirt1, annee_naissance1 = :annee_naissance1, email1 = :email1, telephone1 = :telephone1, licence_1 = :licence_1, numero_licence_1 = :numero_licence_1, club1 = :club1, certificat1 = :certificat1, nom2 = :nom2, prenom2 = :prenom2, sexe2 = :sexe2, tshirt2 = :tshirt2, annee_naissance2 = :annee_naissance2, email2 = :email2, telephone2 = :telephone2, licence_2 = :licence_2, numero_licence_2 = :numero_licence_2, club2 = :club2, certificat2 = :certificat2, etat = :etat WHERE id_team = "' . $_SESSION['auth']['id'] . '"');
     } else {
         $req = $bdd->prepare('INSERT INTO en_attente(id_team, nom1, prenom1, sexe1, tshirt1, annee_naissance1, email1, telephone1, licence_1, numero_licence_1, club1, certificat1, nom2, prenom2, sexe2, tshirt2, annee_naissance2, email2, telephone2, licence_2, numero_licence_2, club2, certificat2, etat) VALUES(:id_team, :nom1, :prenom1, :sexe1, :tshirt1, :annee_naissance1, :email1, :telephone1, :licence_1, :numero_licence_1, :club1, :certificat1, :nom2, :prenom2, :sexe2, :tshirt2, :annee_naissance2, :email2, :telephone2, :licence_2, :numero_licence_2, :club2, :certificat2, :etat)');
     }
@@ -120,7 +120,7 @@ function upload($certif)
             $extensionUpload = $infosFichier["extension"];
             $nomFichier = md5($infosFichier['filename']) . '.' . $infosFichier['extension'];
             if ($extensionUpload == "pdf") {
-                move_uploaded_file($_FILES["$certif"]["tmp_name"], 'uploads/' . $nomFichier);
+                move_uploaded_file($_FILES["$certif"]["tmp_name"], 'src/uploads/' . $nomFichier);
             } else {
                 $count++;
             }

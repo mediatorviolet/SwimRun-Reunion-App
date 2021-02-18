@@ -1,11 +1,11 @@
 <?php
-require('functions/auth.php');
+require('src/functions/auth.php');
 if (!Auth::isLogged()) {
     header('Location: index.php?page=connexion');
 }
 
-include 'functions/logout.php';
-include 'functions/traitement.php';
+include 'src/functions/logout.php';
+include 'src/functions/traitement.php';
 validation_form();
 $user = $_SESSION['auth'];
 ?>
@@ -62,7 +62,7 @@ $user = $_SESSION['auth'];
         </div>
         <div class="col-sm-4 mx-auto d-flex justify-content-center">
             <div class="shape1">
-                <img src="../resources/img/LOGO SWIMRUN SEUL.png" alt="logo swimrun" class="img-fluid">
+                <img src="resources/img/LOGO SWIMRUN SEUL.png" alt="logo swimrun" class="img-fluid">
             </div>
         </div>
     </div>
@@ -232,7 +232,7 @@ $user = $_SESSION['auth'];
     <!-- Copyright -->
 </footer>
 
-<script src="functions/script.js"></script>
+<script src="src/functions/script.js"></script>
 <script>
     form_controller(radios1, licence1, certif1, "<?= $user['licence1'] ?>");
     form_controller(radios2, licence2, certif2, "<?= $user['licence2'] ?>");

@@ -1,4 +1,4 @@
-<?php include 'functions/login.php'; ?>
+<?php include 'src/functions/login.php'; ?>
 <?php login() ?>
 
 <!-- Login la longue -->

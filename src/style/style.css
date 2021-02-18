@@ -7,7 +7,7 @@
 }
 
 .main-page {
-    background-image: url('../resources/img/sponsors_gray_background.jpg');
+    background-image: url('../../resources/img/sponsors_gray_background.jpg');
     background-size: auto;
     background-repeat: no-repeat;
     height: 100vh;
@@ -62,14 +62,14 @@ footer div {
 }
 
 .divider {
-    background: transparent url('../resources/img/divider_dark.png');
+    background: transparent url('../../resources/img/divider_dark.png');
     height: 6px;
     width: 82px;
     margin-bottom: 2rem;
 }
 
 .shape1 {
-    background: transparent url('../resources/img/element_01.png') no-repeat center center;
+    background: transparent url('../../resources/img/element_01.png') no-repeat center center;
 }
 
 b {
