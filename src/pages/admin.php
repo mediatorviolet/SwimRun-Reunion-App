@@ -172,6 +172,7 @@ function badge_count($etat)
                             </tbody>
                         </table>
                         <input type="hidden" name="id_attente" value="<?= $donnees['id_attente'] ?>">
+                        <input type="hidden" name="id_team" value="<?= $donnees['id_team'] ?>">
                         <button type="submit" name="valide" class="btn rounded-0 me-4">Valider</button>
 
                         <!-- Button trigger modal -->
@@ -224,71 +225,71 @@ function badge_count($etat)
                             <tr>
                                 <th scope="row">Nom</th>
                                 <?php
-                                highlight_change($donnees, "nom_relayeur_1", "nom1");
-                                highlight_change($donnees, "nom_relayeur_2", "nom2");
+                                highlight_change_noInput($donnees, "nom_relayeur_1", "nom1");
+                                highlight_change_noInput($donnees, "nom_relayeur_2", "nom2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Prénom</th>
                                 <?php
-                                highlight_change($donnees, "prenom_relayeur_1", "prenom1");
-                                highlight_change($donnees, "prenom_relayeur_2", "prenom2");
+                                highlight_change_noInput($donnees, "prenom_relayeur_1", "prenom1");
+                                highlight_change_noInput($donnees, "prenom_relayeur_2", "prenom2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Sexe</th>
                                 <?php
-                                highlight_change($donnees, "sexe_relayeur_1", "sexe1");
-                                highlight_change($donnees, "sexe_relayeur_2", "sexe2");
+                                highlight_change_noInput($donnees, "sexe_relayeur_1", "sexe1");
+                                highlight_change_noInput($donnees, "sexe_relayeur_2", "sexe2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Taille de t-shirt</th>
                                 <?php
-                                highlight_change($donnees, "tshirt_relayeur_1", "tshirt1");
-                                highlight_change($donnees, "tshirt_relayeur_2", "tshirt2");
+                                highlight_change_noInput($donnees, "tshirt_relayeur_1", "tshirt1");
+                                highlight_change_noInput($donnees, "tshirt_relayeur_2", "tshirt2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Année de naissance</th>
                                 <?php
-                                highlight_change($donnees, "annee_naissance_1", "annee_naissance1");
-                                highlight_change($donnees, "annee_naissance_2", "annee_naissance2");
+                                highlight_change_noInput($donnees, "annee_naissance_1", "annee_naissance1");
+                                highlight_change_noInput($donnees, "annee_naissance_2", "annee_naissance2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Email</th>
                                 <?php
-                                highlight_change($donnees, "email_relayeur_1", "email1");
-                                highlight_change($donnees, "email_relayeur_2", "email2");
+                                highlight_change_noInput($donnees, "email_relayeur_1", "email1");
+                                highlight_change_noInput($donnees, "email_relayeur_2", "email2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Téléphone</th>
                                 <?php
-                                highlight_change($donnees, "tel1", "telephone1");
-                                highlight_change($donnees, "tel2", "telephone2");
+                                highlight_change_noInput($donnees, "tel1", "telephone1");
+                                highlight_change_noInput($donnees, "tel2", "telephone2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Type de licence</th>
                                 <?php
-                                highlight_change($donnees, "type_licence_relayeur_1", "licence_1");
-                                highlight_change($donnees, "type_licence_relayeur_2", "licence_2");
+                                highlight_change_noInput($donnees, "type_licence_relayeur_1", "licence_1");
+                                highlight_change_noInput($donnees, "type_licence_relayeur_2", "licence_2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Numéro de licence</th>
                                 <?php
-                                highlight_change($donnees, "numero_licence_relayeur_1", "numero_licence_1");
-                                highlight_change($donnees, "numero_licence_relayeur_2", "numero_licence_2");
+                                highlight_change_noInput($donnees, "numero_licence_relayeur_1", "numero_licence_1");
+                                highlight_change_noInput($donnees, "numero_licence_relayeur_2", "numero_licence_2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Nom du club</th>
                                 <?php
-                                highlight_change($donnees, "club_relayeur_1", "club1");
-                                highlight_change($donnees, "club_relayeur_2", "club2");
+                                highlight_change_noInput($donnees, "club_relayeur_1", "club1");
+                                highlight_change_noInput($donnees, "club_relayeur_2", "club2");
                                 ?>
                             </tr>
                             <tr>
@@ -328,71 +329,71 @@ function badge_count($etat)
                             <tr>
                                 <th scope="row">Nom</th>
                                 <?php
-                                highlight_change($donnees, "nom_relayeur_1", "nom1");
-                                highlight_change($donnees, "nom_relayeur_2", "nom2");
+                                highlight_change_noInput($donnees, "nom_relayeur_1", "nom1");
+                                highlight_change_noInput($donnees, "nom_relayeur_2", "nom2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Prénom</th>
                                 <?php
-                                highlight_change($donnees, "prenom_relayeur_1", "prenom1");
-                                highlight_change($donnees, "prenom_relayeur_2", "prenom2");
+                                highlight_change_noInput($donnees, "prenom_relayeur_1", "prenom1");
+                                highlight_change_noInput($donnees, "prenom_relayeur_2", "prenom2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Sexe</th>
                                 <?php
-                                highlight_change($donnees, "sexe_relayeur_1", "sexe1");
-                                highlight_change($donnees, "sexe_relayeur_2", "sexe2");
+                                highlight_change_noInput($donnees, "sexe_relayeur_1", "sexe1");
+                                highlight_change_noInput($donnees, "sexe_relayeur_2", "sexe2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Taille de t-shirt</th>
                                 <?php
-                                highlight_change($donnees, "tshirt_relayeur_1", "tshirt1");
-                                highlight_change($donnees, "tshirt_relayeur_2", "tshirt2");
+                                highlight_change_noInput($donnees, "tshirt_relayeur_1", "tshirt1");
+                                highlight_change_noInput($donnees, "tshirt_relayeur_2", "tshirt2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Année de naissance</th>
                                 <?php
-                                highlight_change($donnees, "annee_naissance_1", "annee_naissance1");
-                                highlight_change($donnees, "annee_naissance_2", "annee_naissance2");
+                                highlight_change_noInput($donnees, "annee_naissance_1", "annee_naissance1");
+                                highlight_change_noInput($donnees, "annee_naissance_2", "annee_naissance2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Email</th>
                                 <?php
-                                highlight_change($donnees, "email_relayeur_1", "email1");
-                                highlight_change($donnees, "email_relayeur_2", "email2");
+                                highlight_change_noInput($donnees, "email_relayeur_1", "email1");
+                                highlight_change_noInput($donnees, "email_relayeur_2", "email2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Téléphone</th>
                                 <?php
-                                highlight_change($donnees, "tel1", "telephone1");
-                                highlight_change($donnees, "tel2", "telephone2");
+                                highlight_change_noInput($donnees, "tel1", "telephone1");
+                                highlight_change_noInput($donnees, "tel2", "telephone2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Type de licence</th>
                                 <?php
-                                highlight_change($donnees, "type_licence_relayeur_1", "licence_1");
-                                highlight_change($donnees, "type_licence_relayeur_2", "licence_2");
+                                highlight_change_noInput($donnees, "type_licence_relayeur_1", "licence_1");
+                                highlight_change_noInput($donnees, "type_licence_relayeur_2", "licence_2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Numéro de licence</th>
                                 <?php
-                                highlight_change($donnees, "numero_licence_relayeur_1", "numero_licence_1");
-                                highlight_change($donnees, "numero_licence_relayeur_2", "numero_licence_2");
+                                highlight_change_noInput($donnees, "numero_licence_relayeur_1", "numero_licence_1");
+                                highlight_change_noInput($donnees, "numero_licence_relayeur_2", "numero_licence_2");
                                 ?>
                             </tr>
                             <tr>
                                 <th scope="row">Nom du club</th>
                                 <?php
-                                highlight_change($donnees, "club_relayeur_1", "club1");
-                                highlight_change($donnees, "club_relayeur_2", "club2");
+                                highlight_change_noInput($donnees, "club_relayeur_1", "club1");
+                                highlight_change_noInput($donnees, "club_relayeur_2", "club2");
                                 ?>
                             </tr>
                             <tr>

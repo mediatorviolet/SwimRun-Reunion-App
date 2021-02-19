@@ -5,6 +5,7 @@ if (!Auth::isLogged()) {
 }
 
 include 'src/functions/logout.php';
+include 'src/functions/admin_functions.php';
 ?>
 
 <style>
@@ -55,6 +56,7 @@ include 'src/functions/logout.php';
                 <th>Année naissance 1</th>
                 <th>Licence 1</th>
                 <th>Club 1</th>
+                <th>Certificat 1</th>
                 <th>Numéro licence 1</th>
                 <th>T-shirt 1</th>
                 <th>Nom 2</th>
@@ -63,6 +65,7 @@ include 'src/functions/logout.php';
                 <th>Année naissance 2</th>
                 <th>Licence 2</th>
                 <th>Club 2</th>
+                <th>Certificat 2</th>
                 <th>Numéro licence 2</th>
                 <th>T-shirt 2</th>
                 <th>Course</th>
@@ -76,7 +79,9 @@ include 'src/functions/logout.php';
                 die('Erreur : ' . $e->getMessage());
             }
 
-            $req = $bdd->query('SELECT * FROM final');
+            $sql = 'SELECT t.*, f.* FROM team t RIGHT JOIN final f ON f.id = t.id';
+
+            $req = $bdd->query($sql);
             while ($data = $req->fetch()) {
             ?>
                 <tr>
@@ -84,31 +89,45 @@ include 'src/functions/logout.php';
                     <td><?= $data['date_inscription'] ?></td>
                     <td><?= $data['code_invite'] ?></td>
                     <td><?= $data['team'] ?></td>
-                    <td><?= $data['responsable_equipe'] ?></td>
-                    <td><?= $data['categorie_equipe'] ?></td>
-                    <td><?= $data['telephone1'] ?></td>
-                    <td><?= $data['telephone2'] ?></td>
-                    <td><?= $data['email1'] ?></td>
-                    <td><?= $data['email2'] ?></td>
+                    <?php
+                    highlight_change_noInput($data, 'responsable_equipe', 'respo_equipe');
+                    highlight_change_noInput($data, 'categorie_equipe', 'cat_equipe');
+                    highlight_change_noInput($data, 'tel1', 'telephone1');
+                    highlight_change_noInput($data, 'tel2', 'telephone2');
+                    highlight_change_noInput($data, 'email_relayeur_1', 'email1');
+                    highlight_change_noInput($data, 'email_relayeur_2', 'email2');
+                    ?>
                     <td><?= $data['adresse_postale'] ?></td>
                     <td><?= $data['code_postal'] ?></td>
                     <td><?= $data['ville'] ?></td>
-                    <td><?= $data['nom1'] ?></td>
-                    <td><?= $data['prenom1'] ?></td>
-                    <td><?= $data['sexe1'] ?></td>
-                    <td><?= $data['annee_naissance1'] ?></td>
-                    <td><?= $data['licence_1'] ?></td>
-                    <td><?= $data['club1'] ?></td>
-                    <td><?= $data['numero_licence_1'] ?></td>
-                    <td><?= $data['tshirt1'] ?></td>
-                    <td><?= $data['nom2'] ?></td>
-                    <td><?= $data['prenom2'] ?></td>
-                    <td><?= $data['sexe2'] ?></td>
-                    <td><?= $data['annee_naissance2'] ?></td>
-                    <td><?= $data['licence_2'] ?></td>
-                    <td><?= $data['club2'] ?></td>
-                    <td><?= $data['numero_licence_2'] ?></td>
-                    <td><?= $data['tshirt2'] ?></td>
+                    <?php
+                    highlight_change_noInput($data, 'nom_relayeur_1', 'nom1');
+                    highlight_change_noInput($data, 'prenom_relayeur_1', 'prenom1');
+                    highlight_change_noInput($data, 'sexe_relayeur_1', 'sexe1');
+                    highlight_change_noInput($data, 'annee_naissance_1', 'annee_naissance1');
+                    highlight_change_noInput($data, 'type_licence_relayeur_1', 'licence_1');
+                    highlight_change_noInput($data, 'club_relayeur_1', 'club1');
+                    ?>
+                    <?=
+                    empty($data['certif1']) ? "<td></td>" : "<td class='table-warning'><a href='src/" . $data['certif1'] . "' target='_blank'>Voir le certificat</a></td>";
+                    ?>
+                    <?php
+                    highlight_change_noInput($data, 'numero_licence_relayeur_1', 'numero_licence_1');
+                    highlight_change_noInput($data, 'tshirt_relayeur_1', 'tshirt1');
+                    highlight_change_noInput($data, 'nom_relayeur_2', 'nom2');
+                    highlight_change_noInput($data, 'prenom_relayeur_2', 'prenom2');
+                    highlight_change_noInput($data, 'sexe_relayeur_2', 'sexe2');
+                    highlight_change_noInput($data, 'annee_naissance_2', 'annee_naissance2');
+                    highlight_change_noInput($data, 'type_licence_relayeur_2', 'licence_2');
+                    highlight_change_noInput($data, 'club_relayeur_2', 'club2');
+                    ?>
+                    <?=
+                    empty($data['certif2']) ? "<td></td>" : "<td class='table-warning'><a href='src/" . $data['certif2'] . "' target='_blank'>Voir le certificat</a></td>";
+                    ?>
+                    <?php
+                    highlight_change_noInput($data, 'numero_licence_relayeur_2', 'numero_licence_2');
+                    highlight_change_noInput($data, 'tshirt_relayeur_2', 'tshirt2');
+                    ?>
                     <td><?= $data['rsfp_product'] ?></td>
                 </tr>
             <?php } ?>
@@ -134,6 +153,7 @@ include 'src/functions/logout.php';
                 <th>Année naissance 1</th>
                 <th>Licence 1</th>
                 <th>Club 1</th>
+                <th>Certificat 1</th>
                 <th>Numéro licence 1</th>
                 <th>T-shirt 1</th>
                 <th>Nom 2</th>
@@ -142,6 +162,7 @@ include 'src/functions/logout.php';
                 <th>Année naissance 2</th>
                 <th>Licence 2</th>
                 <th>Club 2</th>
+                <th>Certificat 2</th>
                 <th>Numéro licence 2</th>
                 <th>T-shirt 2</th>
                 <th>Course</th>
