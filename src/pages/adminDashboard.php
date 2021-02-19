@@ -9,9 +9,31 @@ include 'src/functions/admin_functions.php';
 ?>
 
 <style>
+    * {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
     th,
     td {
-        font-size: .8rem;
+        font-size: .7rem;
+        padding: 0;
+    }
+
+    tr.odd:nth-child(1)>td {
+        padding: 0 0 0 0 !important;
+    }
+
+    th {
+        padding: 0px 20px;
+    }
+
+    .navbar {
+        padding-bottom: 1rem !important;
+        padding-top: 1rem !important;
+    }
+
+    button[name='deconnexion'] {
+        padding: .375rem .75rem !important;
     }
 </style>
 
@@ -33,7 +55,7 @@ include 'src/functions/admin_functions.php';
     </div>
 </nav>
 
-<div class="p-5 w-100">
+<div class="p-5 w-100 test">
     <table id="final-table" class="display table table-sm" style="width:100%">
         <thead>
             <tr>
