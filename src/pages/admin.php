@@ -20,7 +20,7 @@ function badge_count($etat)
 }
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow py-4">
     <div class="container-fluid">
         <a class="navbar-brand fw-bold mx-lg-4" href="index.php?page=admin">
             Tableau de bord administrateur

@@ -10,7 +10,7 @@ include 'src/functions/admin_functions.php';
 
 <link rel="stylesheet" href="src/style/adminDash.css">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow py-4">
     <div class="container-fluid">
         <a class="navbar-brand fw-bold mx-lg-4" href="index.php?page=admin">
             Tableau de bord administrateur
@@ -64,6 +64,7 @@ include 'src/functions/admin_functions.php';
                 <th>Numéro licence 2</th>
                 <th>T-shirt 2</th>
                 <th>Course</th>
+                <th>Modifié</th>
             </tr>
         </thead>
         <tbody>
@@ -124,6 +125,7 @@ include 'src/functions/admin_functions.php';
                     highlight_change_noInput($data, 'tshirt_relayeur_2', 'tshirt2');
                     ?>
                     <td><?= $data['rsfp_product'] ?></td>
+                    <td><?= $data['updated'] === 'true' ? "Oui" : "Non" ?></td>
                 </tr>
             <?php } ?>
         </tbody>
@@ -161,6 +163,7 @@ include 'src/functions/admin_functions.php';
                 <th>Numéro licence 2</th>
                 <th>T-shirt 2</th>
                 <th>Course</th>
+                <th>Modifié</th>
             </tr>
         </tfoot>
     </table>
