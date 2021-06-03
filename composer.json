@@ -1,6 +1,8 @@
 {
     "require": {
         "phpmailer/phpmailer": "^6.2",
-        "league/oauth2-google": "^3.0"
+        "league/oauth2-google": "^3.0",
+        "sendinblue/api-v3-sdk": "7.x.x",
+        "vlucas/phpdotenv": "^5.3"
     }
 }

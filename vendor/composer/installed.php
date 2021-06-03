@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '58b2241f96526bdc7f49f2417c028ddc9340d66b',
+    'reference' => '3f7293e84ada2ca94c8ead1eaa657aae5148e8b1',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,16 @@
       'aliases' => 
       array (
       ),
-      'reference' => '58b2241f96526bdc7f49f2417c028ddc9340d66b',
+      'reference' => '3f7293e84ada2ca94c8ead1eaa657aae5148e8b1',
+    ),
+    'graham-campbell/result-type' => 
+    array (
+      'pretty_version' => 'v1.0.1',
+      'version' => '1.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '7e279d2cd5d7fbb156ce46daada972355cea27bb',
     ),
     'guzzlehttp/guzzle' => 
     array (
@@ -83,6 +92,15 @@
       ),
       'reference' => 'e38888a75c070304ca5514197d4847a59a5c853f',
     ),
+    'phpoption/phpoption' => 
+    array (
+      'pretty_version' => '1.7.5',
+      'version' => '1.7.5.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '994ecccd8f3283ecf5ac33254543eb0ac946d525',
+    ),
     'psr/http-message' => 
     array (
       'pretty_version' => '1.0.1',
@@ -108,6 +126,24 @@
       ),
       'reference' => '120b605dfeb996808c31b6477290a714d356e822',
     ),
+    'sendinblue/api-v3-sdk' => 
+    array (
+      'pretty_version' => 'v7.4.0',
+      'version' => '7.4.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '0b86513957d22c3fcd0598f5c961be2513f6c8d6',
+    ),
+    'symfony/polyfill-ctype' => 
+    array (
+      'pretty_version' => 'v1.23.0',
+      'version' => '1.23.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '46cd95797e9df938fdd2b03693b5fca5e64b01ce',
+    ),
     'symfony/polyfill-intl-idn' => 
     array (
       'pretty_version' => 'v1.19.0',
@@ -126,6 +162,15 @@
       ),
       'reference' => '8db0ae7936b42feb370840cf24de1a144fb0ef27',
     ),
+    'symfony/polyfill-mbstring' => 
+    array (
+      'pretty_version' => 'v1.23.0',
+      'version' => '1.23.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '2df51500adbaebdc4c38dea4c89a2e131c45c8a1',
+    ),
     'symfony/polyfill-php70' => 
     array (
       'pretty_version' => 'v1.19.0',
@@ -143,6 +188,24 @@
       array (
       ),
       'reference' => 'beecef6b463b06954638f02378f52496cb84bacc',
+    ),
+    'symfony/polyfill-php80' => 
+    array (
+      'pretty_version' => 'v1.23.0',
+      'version' => '1.23.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'eca0bf41ed421bed1b57c4958bab16aa86b757d0',
+    ),
+    'vlucas/phpdotenv' => 
+    array (
+      'pretty_version' => 'v5.3.0',
+      'version' => '5.3.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'b3eac5c7ac896e52deab4a99068e3f4ab12d9e56',
     ),
   ),
 );

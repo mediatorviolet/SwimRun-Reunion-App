@@ -1,11 +1,15 @@
 <?php
-require('src/functions/auth.php');
+// require_once('src/functions/auth.php');
+require_once('../functions/auth.php');
+require_once("../functions/connexion_bdd.php");
 if (!Auth::isLogged()) {
     header('Location: index.php?page=connexion');
 }
 
-include 'src/functions/logout.php';
-include 'src/functions/admin_functions.php';
+// include 'src/functions/logout.php';
+include '../functions/logout.php';
+// include 'src/functions/admin_functions.php';
+include '../functions/admin_functions.php';
 connexion_bdd();
 valider();
 
@@ -76,7 +80,8 @@ function badge_count($etat)
             <?php
             $req = $bdd->query('SELECT t.*, e.* FROM team t RIGHT JOIN en_attente e ON e.id_team = t.id WHERE e.etat = \'a_valider\'');
 
-            while ($donnees = $req->fetch()) { ?>
+            $donnees = $req->fetch();
+            while ($donnees) { ?>
 
                 <div class="table-responsive mb-5 mx-lg-4">
                     <form action="<?= valider() ?>" method="post">
