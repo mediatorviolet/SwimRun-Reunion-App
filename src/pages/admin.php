@@ -189,7 +189,7 @@ function badge_count($etat)
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body text-center">
-                                        <textarea name="motif" id="" cols="40" rows="10" placeholder="Entrez un motif de refus"></textarea>
+                                        <textarea name="motif" id="" cols="40" rows="10" placeholder="Entrez un motif de refus" required></textarea>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn rounded-0" data-bs-dismiss="modal">Annuler</button>
@@ -200,6 +200,11 @@ function badge_count($etat)
                         </div>
                     </form>
                 </div>
+            <?php
+            }
+
+            if (empty($req->fetch())) { ?>
+                <p class="fw-bold text-center pt-5">Aucune modification en attente.</p>
             <?php
             }
 
