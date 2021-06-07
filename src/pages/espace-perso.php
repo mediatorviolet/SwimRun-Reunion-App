@@ -10,7 +10,7 @@ validation_form();
 $user = $_SESSION['auth'];
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow py-4">
     <div class="container-fluid">
         <a class="navbar-brand fw-bold mx-lg-4" href="#">Bienvenue <?= $user['team'] ?> !</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
