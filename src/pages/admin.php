@@ -32,6 +32,7 @@ function badge_count($etat)
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <a class="nav-link text-light" href="index.php?page=admin-dashboard">Dashboard</a>
             <form action="<?= logout() ?>" method="post">
                 <button type="submit" name="deconnexion" id="btn_deco_admin" class="btn rounded-0 mx-lg-4 mt-lg-0 mt-4 h-100">
                     Déconnexion

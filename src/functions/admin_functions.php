@@ -85,3 +85,8 @@ function highlight_change($a, $t, $e)
 {
     echo $a["$t"] != html_entity_decode($a["$e"]) ? '<td class="table-warning"><input style="background-color: #fff3cd;" type="text" value="' . html_entity_decode($a["$e"]) . '" name= "' . $e . '"></td>' : '<td><input type="text" value="' . html_entity_decode($a["$e"]) . '" name="' . $e . '"></td>';
 }
+
+function highlight_change_noInput($a, $t, $e)
+{
+    echo $a["$t"] != html_entity_decode($a["$e"]) ? '<td class="table-warning">' . html_entity_decode($a["$e"]) . '</td>' : '<td>' . html_entity_decode($a["$e"]) . '</td>';
+}
