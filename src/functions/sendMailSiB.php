@@ -1,6 +1,4 @@
 <?php
-
-// require_once('../../vendor/autoload.php');
 require_once("src/helpers/dotenv.php");
 
 /**
@@ -23,7 +21,7 @@ function sendMail($to, $params, $templateId)
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "POST",
         CURLOPT_POSTFIELDS => "{\"sender\":
-        {\"name\":\"Swimrun Réunion\",\"email\":\"contact.swimrunreunion@gmail.com\"},
+        {\"name\":" . $_ENV["CONTACT_NAME"] . ",\"email\":" . $_ENV["CONTACT_MAIL"] . "},
         \"to\":" . $to . ", \"params\":" . $params . ",
         \"templateId\":" . $templateId . "}",
         CURLOPT_HTTPHEADER => [
@@ -37,29 +35,10 @@ function sendMail($to, $params, $templateId)
     $err = curl_error($curl);
 
     if ($err) {
-        // echo "cURL error #:" . $err;
+        echo "cURL error #:" . $err;
         return false;
     } else {
         // echo $response;
         return true;
     }
 }
-
-// $to = [
-//     [
-//         "email" => "antoineschilt@gmail.com",
-//         "name" => "Antoine"
-//     ],
-//     [
-//         "email" => "nthestripper@gmail.com",
-//         "name" => "Nick TS"
-//     ]
-// ];
-
-// $params = [
-//     "prenom1" => "Antoine", "prenom2" => "Bob"
-// ];
-
-// $templateId = "1";
-
-// sendMail(json_encode($to), json_encode($params), $templateId);

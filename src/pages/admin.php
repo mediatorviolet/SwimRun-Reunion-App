@@ -3,6 +3,7 @@ require_once('src/functions/auth.php');
 // require_once("src/functions/connexion_bdd.php");
 require_once('src/functions/admin_functions.php');
 require_once('src/functions/logout.php');
+require_once('src/helpers/dotenv.php');
 
 if (!Auth::isLogged()) {
     header('Location: /index.php?page=connexion');
@@ -14,7 +15,7 @@ if (!Auth::isLogged()) {
 function badge_count($etat)
 {
     try { // Connexion à la BDD
-        $bdd = new PDO('mysql:host=127.0.0.1;dbname=swimrun-app;charset=utf8', 'antoine', 'password', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $bdd = new PDO('mysql:host=' . $_ENV["DB_HOST"] . ';dbname=' . $_ENV["DB_NAME"] . ';charset=utf8', $_ENV["MYSQL_USERNAME"], $_ENV["MYSQL_PASSWORD"], array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
     } catch (Exception $e) { // Si erreur, on renvoi un message d'erreur
         die('Erreur : ' . $e->getMessage());
     }
@@ -22,7 +23,7 @@ function badge_count($etat)
 }
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow py-4">
     <div class="container-fluid">
         <a class="navbar-brand fw-bold mx-lg-4" href="#">
             Tableau de bord administrateur
@@ -42,20 +43,6 @@ function badge_count($etat)
 
 <div class="container-fluid my-5" style="min-height: 100vh;">
     <?php
-    // if (isset($_POST['valide']) or isset($_POST['non-valide'])) {
-    //     if ($bool) {
-    //         echo '<div class="alert alert-success alert-dismissible fade show col-6 mx-auto mb-5 text-center fw-bold shadow" role="alert">';
-    //         echo '<span>Modifications validées.</span>';
-    //         echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-    //         echo '</div>';
-    //     } else {
-    //         echo '<div class="alert alert-warning alert-dismissible fade show col-6 mx-auto mb-5 text-center fw-bold shadow" role="alert">';
-    //         echo '<span>Modifications non validées.</span>';
-    //         echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-    //         echo '</div>';
-    //     }
-    // }
-
     if (isset($_POST["valide"])) {
         echo '<div class="alert alert-success alert-dismissible fade show col-6 mx-auto mb-5 text-center fw-bold shadow" role="alert">';
         echo '<span>Modifications validées.</span>';
@@ -90,7 +77,7 @@ function badge_count($etat)
         <div class="tab-pane fade show active mt-5" id="a-valider" role="tabpanel" aria-labelledby="a-valider-tab">
             <?php
             try { // Connexion à la BDD
-                $bdd = new PDO('mysql:host=127.0.0.1;dbname=swimrun-app;charset=utf8', 'antoine', 'password', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+                $bdd = new PDO('mysql:host=' . $_ENV["DB_HOST"] . ';dbname=' . $_ENV["DB_NAME"] . ';charset=utf8', $_ENV["MYSQL_USERNAME"], $_ENV["MYSQL_PASSWORD"], array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
             } catch (Exception $e) { // Si erreur, on renvoi un message d'erreur
                 die('Erreur : ' . $e->getMessage());
             }

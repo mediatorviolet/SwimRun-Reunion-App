@@ -1,6 +1,5 @@
 <?php
-
-// require("../helpers/dotenv.php");
+require("src/helpers/dotenv.php");
 
 $error_login = '';
 function login()
@@ -8,7 +7,7 @@ function login()
     global $error_login;
     if ($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST['connexion'])) {
         try { // Connexion à la BDD
-            $bdd = new PDO('mysql:host=127.0.0.1;dbname=swimrun-app;charset=utf8', 'antoine', 'password', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $bdd = new PDO('mysql:host=' . $_ENV["DB_HOST"] . ';dbname=' . $_ENV["DB_NAME"] . ';charset=utf8', $_ENV["MYSQL_USERNAME"], $_ENV["MYSQL_PASSWORD"], array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         } catch (Exception $e) { // Si erreur, on renvoi un message d'erreur
             die('Erreur : ' . $e->getMessage());
         }
@@ -27,7 +26,7 @@ function login()
 
         if (!$result) { // Si les identifiants ne concordent pas on affiche un message d'erreur
             $error_login = 'Nom d\'équipe ou mot de passe incorrect';
-        } 
+        }
         if ($result && $result['role'] == 'user') { // Les identifiants correspondent avec ce qui se trouve dans la BDD
             $error_login = '';
             // $_SESSION['user'] = $result; // On stocke temporairement les infos de l'équipe dans la variable $_SESSION
@@ -61,7 +60,7 @@ function login()
             );
             header('Location: index.php?page=espace_personnel'); // On redirige l'utilisateur vers son espace personnel
             die;
-        } 
+        }
         if ($result && $result['role'] == 'admin') {
             $error_login  = '';
             $_SESSION['auth'] = array(
