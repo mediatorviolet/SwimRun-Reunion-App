@@ -9,7 +9,7 @@ if (!Auth::isLogged()) {
 }
 
 // connexion_bdd();
-valider();
+// valider();
 
 function badge_count($etat)
 {
@@ -42,18 +42,31 @@ function badge_count($etat)
 
 <div class="container-fluid my-5" style="min-height: 100vh;">
     <?php
-    if (isset($_POST['valide']) or isset($_POST['non-valide'])) {
-        if ($bool) {
-            echo '<div class="alert alert-success alert-dismissible fade show col-6 mx-auto mb-5 text-center fw-bold shadow" role="alert">';
-            echo '<span>Modifications validées.</span>';
-            echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-            echo '</div>';
-        } else {
-            echo '<div class="alert alert-warning alert-dismissible fade show col-6 mx-auto mb-5 text-center fw-bold shadow" role="alert">';
-            echo '<span>Modifications non validées.</span>';
-            echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-            echo '</div>';
-        }
+    // if (isset($_POST['valide']) or isset($_POST['non-valide'])) {
+    //     if ($bool) {
+    //         echo '<div class="alert alert-success alert-dismissible fade show col-6 mx-auto mb-5 text-center fw-bold shadow" role="alert">';
+    //         echo '<span>Modifications validées.</span>';
+    //         echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+    //         echo '</div>';
+    //     } else {
+    //         echo '<div class="alert alert-warning alert-dismissible fade show col-6 mx-auto mb-5 text-center fw-bold shadow" role="alert">';
+    //         echo '<span>Modifications non validées.</span>';
+    //         echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+    //         echo '</div>';
+    //     }
+    // }
+
+    if (isset($_POST["valide"])) {
+        echo '<div class="alert alert-success alert-dismissible fade show col-6 mx-auto mb-5 text-center fw-bold shadow" role="alert">';
+        echo '<span>Modifications validées.</span>';
+        echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+        echo '</div>';
+    }
+    if (isset($_POST['non-valide'])) {
+        echo '<div class="alert alert-warning alert-dismissible fade show col-6 mx-auto mb-5 text-center fw-bold shadow" role="alert">';
+        echo '<span>Modifications non validées.</span>';
+        echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+        echo '</div>';
     }
     ?>
     <ul class="nav nav-tabs nav-fill mx-lg-4" id="myTab" role="tablist">

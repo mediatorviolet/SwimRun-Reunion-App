@@ -37,10 +37,10 @@ function sendMail($to, $params, $templateId)
     $err = curl_error($curl);
 
     if ($err) {
-        echo "cURL error #:" . $err;
+        // echo "cURL error #:" . $err;
         return false;
     } else {
-        echo $response;
+        // echo $response;
         return true;
     }
 }

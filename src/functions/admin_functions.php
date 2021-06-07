@@ -112,7 +112,7 @@ function valider()
 
             $templateId = "1";
 
-            sendMail(json_encode($to), json_encode($params), $templateId);
+            // sendMail(json_encode($to), json_encode($params), $templateId);
 
             $req->closeCursor();
             // if (send_mail($to, 'Modifications validées', $template, $p1, $p2, '', '', '') == true) {
@@ -147,6 +147,7 @@ function valider()
             }
         }
     }
+    return $bool;
 }
 
 // Fonction qui compare les valeurs de la table team avec celles de la table en_attente, si elles sont différentes, la case correspondante du tableau est colorée en jaune
