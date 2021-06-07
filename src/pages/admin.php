@@ -1,16 +1,14 @@
 <?php
-// require_once('src/functions/auth.php');
-require_once('../functions/auth.php');
-require_once("../functions/connexion_bdd.php");
+require_once('src/functions/auth.php');
+// require_once("src/functions/connexion_bdd.php");
+require_once('src/functions/admin_functions.php');
+require_once('src/functions/logout.php');
+
 if (!Auth::isLogged()) {
-    header('Location: index.php?page=connexion');
+    header('Location: /index.php?page=connexion');
 }
 
-// include 'src/functions/logout.php';
-include '../functions/logout.php';
-// include 'src/functions/admin_functions.php';
-include '../functions/admin_functions.php';
-connexion_bdd();
+// connexion_bdd();
 valider();
 
 function badge_count($etat)
@@ -78,13 +76,18 @@ function badge_count($etat)
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active mt-5" id="a-valider" role="tabpanel" aria-labelledby="a-valider-tab">
             <?php
+            try { // Connexion à la BDD
+                $bdd = new PDO('mysql:host=127.0.0.1;dbname=swimrun-app;charset=utf8', 'antoine', 'password', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            } catch (Exception $e) { // Si erreur, on renvoi un message d'erreur
+                die('Erreur : ' . $e->getMessage());
+            }
             $req = $bdd->query('SELECT t.*, e.* FROM team t RIGHT JOIN en_attente e ON e.id_team = t.id WHERE e.etat = \'a_valider\'');
 
-            $donnees = $req->fetch();
-            while ($donnees) { ?>
+            // $donnees = $req->fetch();
+            while ($donnees = $req->fetch()) { ?>
 
                 <div class="table-responsive mb-5 mx-lg-4">
-                    <form action="<?= valider() ?>" method="post">
+                    <form action="<?= valider() ?>" method="POST">
                         <table class="table table-hover table-bordered border-dark shadow">
                             <thead>
                                 <tr>

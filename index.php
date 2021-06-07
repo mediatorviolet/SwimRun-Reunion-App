@@ -1,6 +1,8 @@
 <?php
 session_start(); // Initialisation de la session
 
+// require_once("vendor/autoload.php");
+// require_once("src/helpers/dotenv.php");
 // if (!isset($_SESSION["auth"])) {
 //     $_SESSION["auth"] = false;
 // }
@@ -39,7 +41,7 @@ session_start(); // Initialisation de la session
 
     if (isset($_GET['page']) and isset($page_ok[$_GET['page']])) {
         $page = $_GET['page'];
-        include 'src/pages/' . $page_ok[$page];
+        include('src/pages/' . $page_ok[$page]);
     } else {
         include 'src/pages/login-page.php';
     }

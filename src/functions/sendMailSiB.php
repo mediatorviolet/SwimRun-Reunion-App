@@ -1,7 +1,7 @@
 <?php
 
-require_once('../../vendor/autoload.php');
-require_once("../../dotenv.php");
+// require_once('../../vendor/autoload.php');
+require_once("src/helpers/dotenv.php");
 
 /**
  * Send a mail with Sendinblue. Data must be passed in JSON format

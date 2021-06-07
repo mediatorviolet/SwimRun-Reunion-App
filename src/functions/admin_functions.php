@@ -5,10 +5,8 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\OAuth;
 use League\OAuth2\Client\Provider\Google;
 
-// require_once 'vendor/autoload.php';
-require_once '../../vendor/autoload.php';
-// require_once './sendMailSiB.php';
-require_once '../functions/sendMailSiB.php';
+// require_once('/vendor/autoload.php');
+require_once('src/functions/sendMailSiB.php');
 
 function send_mail($to, $subject, $template, $p1, $p2, $motif, $team, $code)
 {
@@ -102,22 +100,22 @@ function valider()
             $to = [
                 [
                     "email" => $donnees["email1"],
-                    "name" => $donnees["prenom1"],
+                    "name" => $donnees["p1"],
                 ],
                 [
                     "email" => $donnees["email2"],
-                    "name" => $donnees["prenom2"],
+                    "name" => $donnees["p2"],
                 ]
             ];
 
-            $params = ["prenom1" => $donnees["prenom1"], "prenom2" => $donnees["prenom2"]];
+            $params = ["prenom1" => $donnees["p1"], "prenom2" => $donnees["p2"]];
 
             $templateId = "1";
 
             sendMail(json_encode($to), json_encode($params), $templateId);
 
             $req->closeCursor();
-            // if (send_mail($to, 'Modifications validées', $template, $p1, $p2, '', '', '') == true) 
+            // if (send_mail($to, 'Modifications validées', $template, $p1, $p2, '', '', '') == true) {
             if (sendMail(json_encode($to), json_encode($params), $templateId) === true) {
                 extract($_POST);
                 $sql = "UPDATE en_attente SET nom1 = '$nom1', prenom1 = '$prenom1', sexe1 = '$sexe1', tshirt1 = '$tshirt1', annee_naissance1 = '$annee_naissance1', email1 = '$email1', telephone1 = '$telephone1', licence_1 = '$licence_1', numero_licence_1 = '$numero_licence_1', club1 = '$club1', nom2 = '$nom2', prenom2 = '$prenom2', sexe2 = '$sexe2', tshirt2 = '$tshirt2', annee_naissance2 = '$annee_naissance2', email2 = '$email2', telephone2 = '$telephone2', licence_2 = '$licence_2', numero_licence_2 = '$numero_licence_2', club2 = '$club2', etat = 'valide' WHERE id_attente = '" . $_POST['id_attente'] . "'";
