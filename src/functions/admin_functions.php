@@ -21,17 +21,20 @@ function valider()
             $to = [
                 [
                     "email" => $donnees["email1"],
-                    "name" => $donnees["p1"],
+                    "name" => html_entity_decode(html_entity_decode($donnees["p1"])),
                 ],
                 [
                     "email" => $donnees["email2"],
-                    "name" => $donnees["p2"],
+                    "name" => html_entity_decode(html_entity_decode($donnees["p2"])),
                 ]
             ];
 
-            $params = ["prenom1" => html_entity_decode($donnees["p1"]), "prenom2" => html_entity_decode($donnees["p2"])];
+            $params = [
+                "prenom1" => html_entity_decode(html_entity_decode($donnees["p1"])),
+                "prenom2" => html_entity_decode(html_entity_decode($donnees["p2"]))
+            ];
 
-            $templateId = 1;
+            $templateId = 4;
 
             // sendMail(json_encode($to), json_encode($params), $templateId);
 
@@ -54,17 +57,23 @@ function valider()
                 $to = [
                     [
                         "email" => $donnees["email1"],
-                        "name" => $donnees["p1"],
+                        "name" => html_entity_decode(html_entity_decode($donnees["p1"])),
                     ],
                     [
                         "email" => $donnees["email2"],
-                        "name" => $donnees["p2"],
+                        "name" => html_entity_decode(html_entity_decode($donnees["p2"])),
                     ]
                 ];
 
-                $params = ["prenom1" => $donnees["p1"], "prenom2" => $donnees["p2"], "motif" => $_POST["motif"], "team" => $donnees["team"], "code_invite" => $donnees['code']];
+                $params = [
+                    "prenom1" => html_entity_decode(html_entity_decode($donnees["p1"])),
+                    "prenom2" => html_entity_decode(html_entity_decode($donnees["p2"])),
+                    "motif" => $_POST["motif"],
+                    "team" => html_entity_decode(html_entity_decode($donnees["team"])),
+                    "code" => $donnees['code']
+                ];
 
-                $templateId = 2;
+                $templateId = 5;
 
                 $req->closeCursor();
 
