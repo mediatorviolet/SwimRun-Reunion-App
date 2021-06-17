@@ -31,8 +31,10 @@ function sendMail($to, $params, $templateId)
     try {
         $result = $apiInstance->sendTransacEmail($sendSmtpEmail);
         print_r($result);
+        return true;
     } catch (Exception $e) {
         echo "Exception when calling TransactionalEmailApi->sendTransacEmail: ", $e->getMessage(), PHP_EOL;
+        return false;
     }
 }
 // function sendMail($to, $params, $templateId)
