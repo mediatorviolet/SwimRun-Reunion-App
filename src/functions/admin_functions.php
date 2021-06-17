@@ -29,15 +29,15 @@ function valider()
                 ]
             ];
 
-            $params = ["prenom1" => $donnees["p1"], "prenom2" => $donnees["p2"]];
+            $params = ["prenom1" => html_entity_decode($donnees["p1"]), "prenom2" => html_entity_decode($donnees["p2"])];
 
-            $templateId = "1";
+            $templateId = 1;
 
             // sendMail(json_encode($to), json_encode($params), $templateId);
 
             $req->closeCursor();
 
-            if (sendMail(json_encode($to), json_encode($params), $templateId) === true) {
+            if (sendMail($to, $params, $templateId) === true) {
                 extract($_POST);
                 $sql = "UPDATE en_attente SET nom1 = '$nom1', prenom1 = '$prenom1', sexe1 = '$sexe1', tshirt1 = '$tshirt1', annee_naissance1 = '$annee_naissance1', email1 = '$email1', telephone1 = '$telephone1', licence_1 = '$licence_1', numero_licence_1 = '$numero_licence_1', club1 = '$club1', nom2 = '$nom2', prenom2 = '$prenom2', sexe2 = '$sexe2', tshirt2 = '$tshirt2', annee_naissance2 = '$annee_naissance2', email2 = '$email2', telephone2 = '$telephone2', licence_2 = '$licence_2', numero_licence_2 = '$numero_licence_2', club2 = '$club2', etat = 'valide' WHERE id_attente = '" . $_POST['id_attente'] . "'";
                 $bdd->exec($sql);
@@ -64,11 +64,11 @@ function valider()
 
                 $params = ["prenom1" => $donnees["p1"], "prenom2" => $donnees["p2"], "motif" => $_POST["motif"], "team" => $donnees["team"], "code_invite" => $donnees['code']];
 
-                $templateId = "2";
+                $templateId = 2;
 
                 $req->closeCursor();
 
-                if (sendMail(json_encode($to), json_encode($params), $templateId) === true) {
+                if (sendMail($to, $params, $templateId) === true) {
                     extract($_POST);
                     $sql = "UPDATE en_attente SET nom1 = '$nom1', prenom1 = '$prenom1', sexe1 = '$sexe1', tshirt1 = '$tshirt1', annee_naissance1 = '$annee_naissance1', email1 = '$email1', telephone1 = '$telephone1', licence_1 = '$licence_1', numero_licence_1 = '$numero_licence_1', club1 = '$club1', nom2 = '$nom2', prenom2 = '$prenom2', sexe2 = '$sexe2', tshirt2 = '$tshirt2', annee_naissance2 = '$annee_naissance2', email2 = '$email2', telephone2 = '$telephone2', licence_2 = '$licence_2', numero_licence_2 = '$numero_licence_2', club2 = '$club2', etat = 'non_valide' WHERE id_attente = '" . $_POST['id_attente'] . "'";
                     $bdd->exec($sql);
