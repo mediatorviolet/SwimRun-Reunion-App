@@ -226,7 +226,7 @@ $user = $_SESSION['auth'];
 <footer class="text-center text-lg-start">
     <!-- Copyright -->
     <div class="text-center p-3">
-        © 2021 Copyright:
+        2021 Copyright © Swimrun Réunion
         <a class="nav-link" href="https://github.com/mediatorviolet" target="_blank"><i class="fab fa-github"></i></a>
     </div>
     <!-- Copyright -->
