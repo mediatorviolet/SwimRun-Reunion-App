@@ -170,6 +170,8 @@ function badge_count($etat)
                                 </tr>
                                 <tr>
                                     <th scope="row">Certificat médical</th>
+                                    <input type="hidden" name="certif1" value="<?= $donnees["certificat1"] ?>">
+                                    <input type="hidden" name="certif2" value="<?= $donnees["certificat2"] ?>">
                                     <?=
                                     !empty($donnees['certificat1']) ? '<td class="table-warning"><a href="src/' . $donnees['certificat1'] . '" target="_blank">Voir le certificat</a></td>' : '<td></td>';
                                     ?>
@@ -180,6 +182,7 @@ function badge_count($etat)
                             </tbody>
                         </table>
                         <input type="hidden" name="id_attente" value="<?= $donnees['id_attente'] ?>">
+                        <input type="hidden" name="id_team" value="<?= $donnees['id_team'] ?>">
                         <button type="submit" name="valide" class="btn rounded-0 me-4">Valider</button>
 
                         <!-- Button trigger modal -->
