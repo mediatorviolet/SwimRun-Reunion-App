@@ -2,12 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     color: #242424;
 }
 
 .main-page {
-    background-image: url('../../resources/img/sponsors_gray_background.jpg');
+    background-image: url("../../resources/img/sponsors_gray_background.jpg");
     background-size: auto;
     background-repeat: no-repeat;
     height: 100vh;
@@ -20,8 +20,9 @@
     transition: ease-in-out 0.3s !important;
 }
 
-.btn:focus, .btn:active:focus {
-    box-shadow: 0 0 0 .25rem rgba(255, 23, 68, .5);
+.btn:focus,
+.btn:active:focus {
+    box-shadow: 0 0 0 0.25rem rgba(255, 23, 68, 0.5);
 }
 
 .btn:hover {
@@ -30,7 +31,11 @@
     border-color: #242424 !important;
 }
 
-.card-header, .modal-header, .modal-header h5, .alert-danger, .alert-danger span {
+.card-header,
+.modal-header,
+.modal-header h5,
+.alert-danger,
+.alert-danger span {
     background-color: #ff1744 !important;
     color: #fff !important;
 }
@@ -48,7 +53,8 @@
     border-color: #fff !important;
 }
 
-footer, nav {
+footer,
+nav {
     background-color: #242424;
 }
 
@@ -62,21 +68,24 @@ footer div {
 }
 
 .divider {
-    background: transparent url('../../resources/img/divider_dark.png');
+    background: transparent url("../../resources/img/divider_dark.png");
     height: 6px;
     width: 82px;
     margin-bottom: 2rem;
 }
 
 .shape1 {
-    background: transparent url('../../resources/img/element_01.png') no-repeat center center;
+    background: transparent url("../../resources/img/element_01.png") no-repeat
+        center center;
 }
 
 b {
     font-weight: 800;
 }
 
-h3, h3 b, h3 span {
+h3,
+h3 b,
+h3 span {
     color: #ff1744;
 }
 
@@ -87,7 +96,7 @@ h3 span {
 .form-check-input:focus {
     border-color: #ff1744;
     outline: 0;
-    box-shadow: 0 0 0 .25rem rgba(255, 23, 68, .5);
+    box-shadow: 0 0 0 0.25rem rgba(255, 23, 68, 0.5);
 }
 
 .form-check-input:checked {
@@ -97,4 +106,9 @@ h3 span {
 
 td input {
     border: none !important;
+}
+
+small {
+    font-size: smaller;
+    font-style: italic;
 }
