@@ -138,7 +138,7 @@ $user = $_SESSION['auth'];
                     </div>
                 </div>
                 <div id="certif1_div" class="mb-3">
-                    <label for="certif1" class="form-label">Certificat médical <small>(uniquement au format .pdf)</small></label>
+                    <label for="certif1" class="form-label">Certificat médical <small>(uniquement au format .pdf - taille inférieure à 1Mo)</small></label>
                     <input class="form-control fw-bold" type="file" id="certif1" name="certif1">
                 </div>
             </div>
@@ -212,7 +212,7 @@ $user = $_SESSION['auth'];
                     </div>
                 </div>
                 <div id="certif2_div" class="mb-3">
-                    <label for="certif2" class="form-label">Certificat médical <small>(uniquement au format .pdf)</small></label>
+                    <label for="certif2" class="form-label">Certificat médical <small>(uniquement au format .pdf - taille inférieure à 1Mo)</small></label>
                     <input class="form-control fw-bold" type="file" id="certif2" name="certif2">
                 </div>
             </div>
